@@ -1,5 +1,13 @@
 @extends('layouts.app_nha_ban')
 
+@section('title')
+    chodatso.com | Danh sách nhà bán
+@stop
+
+@section('description')
+    Danh sách nhà bán
+@stop
+
 @section('content')
 <form class="form-horizontal" action="{{URL::to('/')}}/updateUser" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">

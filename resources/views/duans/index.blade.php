@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+    chodatso.com | Danh sách dự án
+@stop
+
+@section('description')
+    Danh sách các dự án đã được tạo.
+@stop
+
 @section('content')
 
 <h1>Danh sách Dự án</h1>

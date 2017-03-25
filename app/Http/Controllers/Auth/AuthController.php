@@ -54,6 +54,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'phone' => 'required|min:10|max:11',
         ]);
     }
 
@@ -69,7 +70,22 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
+            'coins' => env('APP_ENV', '0'),
         ]); 
+        
+        $dataEmail = array('email'=>$data['email']);
+        
+        Mail::send('emails.welcome', [], function($message) use ($dataEmail) {
+            $message->from('admin@chodatso.com', 'chodatso.com');
+            $message->to($dataEmail['email'])->subject('Thông báo từ chodatso.com');
+        });
+        
+        Mail::send('emails.toadmin', [], function($message) use ($dataEmail) {
+            $message->from('admin@chodatso.com', 'chodatso.com');
+            $message->to('tran.thanh.tuan269@gmail.com')->subject('Thông báo từ chodatso.com');
+        });
+        
         return $user;
     }
 }

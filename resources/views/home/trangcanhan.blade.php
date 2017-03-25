@@ -1,11 +1,24 @@
 @extends('layouts.app')
 
+@section('title')
+    chodatso.com | Trang cá nhân
+@stop
+
+@section('description')
+    Trang cá nhân
+@stop
+
+
 @section('content')
 <form class="form-horizontal" action="{{URL::to('/')}}/updateUser" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-       <img src="{{ URL::to('/') }}/images/{{ $user->avatar }}" alt="" width="120px" /></td>
+        <?php if(strlen($user->avatar) == 0){ ?>
+            <img src="{{ URL::to('/') }}/images/1477801630_User_Yuppie_2.png" alt="" width="120px" /></td>
+        <?php }else{ ?>
+            <img src="{{ URL::to('/') }}/images/{{ $user->avatar }}" alt="" width="120px" /></td>
+        <?php }?>
     </div>
 </div>
   <div class="form-group">
@@ -46,7 +59,7 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
+      <button type="submit" class="btn btn-default">Cập nhật</button>
     </div>
   </div>
 </form>

@@ -7,7 +7,30 @@ use Illuminate\Database\Eloquent\Model;
 class Yeucaunha extends Model
 {
     protected $table = "yeucaunha";
-    protected $fillable = ['nguoi_dang','loaiyeucau','tam_tien','loaibds','tinh','huyen','phuong','duong','duan','mua_gap','kinh_doanh','dau_tu','de_o','dien_tich','dia_chi','mat_tien','duong_vao','huong_nha','tang','phong_ngu','phong_khach','wc','yeu_cau'];
+    protected $fillable = [
+        'nguoi_dang',
+        'loaiyeucau',
+        'tam_tien',
+        'loaibds',
+        'tinh',
+        'huyen',
+        'phuong',
+        'duong',
+        'duan',
+        'mua_gap',
+        'kinh_doanh',
+        'dau_tu',
+        'de_o',
+        'dien_tich',
+        'dia_chi',
+        'mat_tien',
+        'duong_vao',
+        'huong_nha',
+        'tang',
+        'phong_ngu',
+        'phong_khach',
+        'wc',
+        'yeu_cau'];
 
     public function user()
     {

@@ -1,5 +1,13 @@
 @extends('layouts.app_nha_ban')
 
+@section('title')
+    chodatso.com | Đăng nhu cầu mua nhà
+@stop
+
+@section('description')
+    Đăng nhu cầu mua nhà
+@stop
+
 @section('content')
 <script type="text/javascript">
 	function QuanTam(obj, id){

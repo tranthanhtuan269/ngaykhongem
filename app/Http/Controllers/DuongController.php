@@ -75,8 +75,10 @@ class DuongController extends Controller
     public function show($id)
     {
         $duong = Duong::findOrFail($id);
-
-        //dd($duong);
+        
+        if($duong === null){
+            return view('errors.404');
+        }
 
         return view('duongs.show')->withDuong($duong);
     }
@@ -90,6 +92,10 @@ class DuongController extends Controller
     public function edit($id)
     {
         $duong = Duong::find($id);
+        
+        if($duong === null){
+            return view('errors.404');
+        }
 
         $huyens = Huyen::pluck('name', 'id');
 
@@ -123,6 +129,10 @@ class DuongController extends Controller
         $input = $request->all();
 
         $duong = Duong::find($id);
+        
+        if($duong === null){
+            return view('errors.404');
+        }
 
         $duong->update($input);
 

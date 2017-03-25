@@ -389,12 +389,12 @@ $banks = $baokim->get_seller_info();
 	<meta content="" name="keywords"/>
 	<meta name="ROBOTS" content="index, follow"/>
 
-	<link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/css/bootstrap.min.css"/>
-	<link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/css/bootstrap-responsive.css"/>
-	<link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/css/main.css"/>
-	<script src="{{ URL::to('/') }}/js/jquery-1.9.1.min.js"></script>
-	<script src="{{ URL::to('/') }}/js/bootstrap.js"></script>
-	<script src="{{ URL::to('/') }}/js/jquery.number.js"></script>
+	<link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/bao-kim/css/bootstrap.min.css"/>
+	<link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/bao-kim/css/bootstrap-responsive.css"/>
+	<link type="text/css" rel="stylesheet" href="{{ URL::to('/') }}/bao-kim/css/main.css"/>
+	<script src="{{ URL::to('/') }}/bao-kim/js/jquery-1.9.1.min.js"></script>
+	<script src="{{ URL::to('/') }}/bao-kim/js/bootstrap.min.js"></script>
+	<script src="{{ URL::to('/') }}/bao-kim/js/jquery.number.js"></script>
 
 </head>
 
@@ -428,7 +428,7 @@ $banks = $baokim->get_seller_info();
 					</div>
 				</div>
 				<div class="method row-fluid" id="2">
-					<div class="icon"><img src="{{ URL::to('/') }}/images/creditcard.png" border="0"/></div>
+					<div class="icon"><img src="{{ URL::to('/') }}/bao-kim/images/creditcard.png" border="0"/></div>
 					<div class="info">
 						<span class="title">Thanh toán trực tuyến bằng thẻ quốc tế <!--<img src="images/safe.png" border="0" style="vertical-align: bottom; margin-left: 5px;" />--></span>
 
@@ -443,7 +443,7 @@ $banks = $baokim->get_seller_info();
 				</div>
 
 				<div class="row-fluid method" id="3">
-					<div class="icon"><img src="{{ URL::to('/') }}/images/transfer.png" border="0"/></div>
+					<div class="icon"><img src="{{ URL::to('/') }}/bao-kim/images/transfer.png" border="0"/></div>
 					<div class="info">
 						<span class="title">Chuyển khoản InternetBanking</span>
 						<span class="desc">Chọn ngân hàng thanh toán</span>
@@ -457,7 +457,7 @@ $banks = $baokim->get_seller_info();
 					<div class="check_box"></div>
 				</div>
 				<div class="row-fluid method" id="1">
-					<div class="icon"><img src="{{ URL::to('/') }}/images/atm.png" border="0"/></div>
+					<div class="icon"><img src="{{ URL::to('/') }}/bao-kim/images/atm.png" border="0"/></div>
 					<div class="info">
 						<span class="title">Thanh toán trực tuyến bằng thẻ ATM nội địa</span>
 						<span class="desc">Chọn ngân hàng thanh toán</span>
@@ -473,10 +473,10 @@ $banks = $baokim->get_seller_info();
 				</div>
 
 				<div class="row-fluid method" id="0">
-					<div class="icon"><img src="{{ URL::to('/') }}/images/sercurity.png" border="0"/></div>
+					<div class="icon"><img src="{{ URL::to('/') }}/bao-kim/images/sercurity.png" border="0"/></div>
 					<div class="info">
 						<div class="bk_logo"><a href="http://baokim.vn" target="_blank"><img
-									src="{{ URL::to('/') }}/images/bk_logo.png" border="0"/></a></div>
+									src="{{ URL::to('/') }}/bao-kim/images/bk_logo.png" border="0"/></a></div>
 						<span class="title">Thanh toán Bảo Kim</span>
 						<span class="desc">Thanh toán bằng tài khoản Bảo Kim (Baokim.vn)</span>
 					</div>

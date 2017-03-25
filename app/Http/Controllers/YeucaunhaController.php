@@ -4,20 +4,16 @@ namespace App\Http\Controllers;
 
 use Mail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
-
-use App\Http\Requests;
 use App\Http\Requests\CreateYeucaunhaRequest;
-use App\Yeucaunha;
 use App\Quantamnha;
+use App\Yeucaunha;
+use App\Quantam;
 use App\Loaibds;
-use App\User;
 use App\Tinh;
 use App\Huong;
 use DB;
 use Response;
-use Input;
 use Session;
 use Auth;
 
@@ -152,30 +148,81 @@ class YeucaunhaController extends Controller
     public function store(CreateYeucaunhaRequest $request)
     {
         $input = $request->all();
-        $input['nguoi_dang'] = \Auth::user()->id;
-        $yeucau_id = yeucaunha::create($input)->id;
+        $user = \Auth::user();
+        $input['nguoi_dang'] = $user->id;
+        $input['tam_tien'] = $input['tam_tien'] * 1000000;
+        $yeucau = yeucaunha::create($input);
+        
+        // create temp variable
+        $loaibds = $request->input('loaibds');
+        $tinh = $request->input('tinh');
+        $huyen = $request->input('huyen');
+        $phuong = $request->input('phuong');
+        $duong = $request->input('duong');
+        $huong = $request->input('huong_nha');
+        $tam_tien = $request->input('tam_tien');
+        $dien_tich = $request->input('dien_tich');
 
         // khi nguoi dung luu xong, thi tim kiem cac nha theo yeu cau cua khach de gui lai
         // ta se them 1 view danh sach nha de tra ve cho nguoi dung
         // Store a piece of data in the session...
-        session(['loaibds' => $request->input('loaibds')]);
-        session(['tinh' => $request->input('tinh')]);
-        session(['huyen' => $request->input('huyen')]);
-        session(['phuong' => $request->input('phuong')]);
-        session(['huong_nha' => $request->input('huong_nha')]);
-        session(['tam_tien' => $request->input('tam_tien')]);
-        session(['dien_tich' => $request->input('dien_tich')]);
+        session(['loaibds' => $loaibds]);
+        session(['tinh' => $tinh]);
+        session(['huyen' => $huyen]);
+        session(['phuong' => $phuong]);
+        session(['huong_nha' => $huong]);
+        session(['tam_tien' => $tam_tien]);
+        session(['dien_tich' => $dien_tich]);
         
-        // send email
-        $id = \Auth::user()->id;
-        $user = User::find($id);
+        $checkquantam = DB::table('quantam')
+                ->where('email', '=', $user->email)
+                ->where('tinh', '=', $tinh)
+                ->where('huyen', '=', $huyen)
+                ->where('type', '=', 1)
+                ->first();
+        
+        if ($checkquantam === null) {
+            // quantam doesn't exist
+            // add user to quantam database
+            // add user to quantam database
+            DB::table('quantam')->insert(
+                [
+                    'user' => $user->id,
+                    'email' => $user->email,
+                    'tinh' => $tinh,
+                    'huyen' => $huyen,
+                    'phuong' => $phuong,
+                    'duong' => $duong,
+                    'type' => 1
+                    ]
+            );
+        }
+        
+        // select email
+        $emails = DB::table('quantam')
+            ->select(
+                 'email'
+            );
+        if(isset($tinh) && $tinh != null && $tinh != 0)
+            $emails = $emails->where('tinh', '=', $tinh);
+        if(isset($huyen) && $huyen != null && $huyen != 0)
+            $emails = $emails->where('huyen', '=', $huyen);
 
-        Mail::send('emails.yeucaunha', ['user' => $user, 'yeucau_id' => $yeucau_id], function ($message) {
+        $emails = $emails->where('type', '=', 2);
 
-            $message->from('admin@chodatso.com', 'chodatso.com');
+        $emails = $emails->get();
+        
+        if(count($emails) > 0){
+            $eList = [];
+            for($i = 0; $i < count($emails); $i++){
+                $eList[] = $emails[$i]->email;
+            }
 
-            $message->to('tran.thanh.tuan269@gmail.com')->subject('Thông báo từ chodatso.com');
-        });
+            Mail::send('emails.yeucaunha', ['user' => $user, 'tindang' => $yeucau], function($message) use ($eList) {
+                $message->from('admin@chodatso.com', 'chodatso.com');
+                $message->to($eList)->subject('Thông báo từ chodatso.com');
+            });
+        }
 
         return Redirect::to('yeucaunha/');
     }
@@ -198,6 +245,10 @@ class YeucaunhaController extends Controller
                     ->select('yeucaunha.*', 'yeucaunha.id as tin_id', 'users.*', 'duongs.name as ten_duong', 'phos.name as ten_pho', 'huyens.name as ten_huyen', 'tinhs.name as ten_tinh', 'huongs.name as ten_huong', 'yeucaunha.created_at as create_at')
                     ->where('yeucaunha.id', '=', $id)
                     ->first();
+        
+        if($yeucaunha === null){
+            return view('errors.404');
+        }
         //dd($yeucaunha);
         return view('yeucaunhas.show')->withYeucaunha($yeucaunha);
     }
@@ -219,13 +270,13 @@ class YeucaunhaController extends Controller
 
         $loaibdss = Loaibds::pluck('name', 'id');
         $tinhs = Tinh::pluck('name', 'id');
-        $huyens = DB::table('huyens')->where('tinh_id','=','1')->pluck('name', 'id'); //Loaibds::pluck('name', 'id');
-        $phuongs = DB::table('phos')->where('huyen_id','=','1')->pluck('name', 'id'); //Loaibds::pluck('name', 'id');
-        $duongs = DB::table('duongs')->where('huyen_id','=','1')->pluck('name', 'id'); //Loaibds::pluck('name', 'id');
-        $duans = DB::table('duans')->where('huyen_id','=','1')->pluck('name', 'id'); //Loaibds::pluck('name', 'id');
+        $huyens = DB::table('huyens')->where('tinh_id','=',$yeucaunha->tinh)->pluck('name', 'id'); //Loaibds::pluck('name', 'id');
+        $phuongs = DB::table('phos')->where('huyen_id','=',$yeucaunha->huyen)->pluck('name', 'id'); //Loaibds::pluck('name', 'id');
+        $duongs = DB::table('duongs')->where('huyen_id','=',$yeucaunha->huyen)->pluck('name', 'id'); //Loaibds::pluck('name', 'id');
+        $duans = DB::table('duans')->where('huyen_id','=',$yeucaunha->huyen)->pluck('name', 'id'); //Loaibds::pluck('name', 'id');
         $huongs = Huong::pluck('name', 'id');
 
-        return \View::make('yeucaunhas.edit', compact(['tinbds','tinhs', 'huyens', 'phuongs', 'duongs', 'duans', 'loaibdss', 'huongs']));
+        return \View::make('yeucaunhas.edit', compact(['yeucaunha','tinhs', 'huyens', 'phuongs', 'duongs', 'duans', 'loaibdss', 'huongs']));
     }
 
     /**
@@ -238,8 +289,13 @@ class YeucaunhaController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
+        $input['tam_tien'] = $input['tam_tien'] * 1000000;
 
         $yeucaunha = yeucaunha::find($id);
+        
+        if($yeucaunha === null){
+            return view('errors.404');
+        }
 
         $yeucaunha->update($input);
 
@@ -257,18 +313,25 @@ class YeucaunhaController extends Controller
     public function destroy($id)
     {
         $yeucaunha = yeucaunha::find($id);
-
+        
         if (is_null($yeucaunha))
         {
             Session::flash('flash_message', 'Không tìm thấy yêu cầu bạn muốn xóa!');
-            return Redirect::route('yeucaunhas.index');
+            return redirect()->back();
         }
+        //dd($yeucaunha->nguoi_dang);
+        
+        $quantam = DB::table('quantam')
+            ->where('user', '=', $yeucaunha->nguoi_dang)
+            ->where('tinh', '=', $yeucaunha->tinh)
+            ->where('huyen', '=', $yeucaunha->huyen)
+            ->delete();
 
         $yeucaunha->delete();
 
         Session::flash('flash_message', 'Yêu cầu đã được xóa thành công!');
 
-        return redirect()->route('yeucaunhas.index');
+        return redirect()->back();
     }
 
     public function addfollowproduct(){

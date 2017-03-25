@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -52,6 +52,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'phone' => 'required|min:10|max:11',
         ]);
     }
 
@@ -67,13 +68,20 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'phone' => $data['phone'],
         ]);
         
-        Mail::send('emails.welcome', [], function ($message) {
-
-            $message->from('admin@chodatso.com', 'chodatso.com');
-
-            $message->to('tran.thanh.tuan269@gmail.com')->subject('Cám ơn Quý khách đã đồng ý sử dụng dịch vụ của chúng tôi!');
+//        Mail::send('emails.welcome', [], function ($message) {
+//
+//            $message->from('admin@chodatso.com', 'chodatso.com');
+//
+//            $message->to('tran.thanh.tuan269@gmail.com')->subject('Cám ơn Quý khách đã đồng ý sử dụng dịch vụ của chúng tôi!');
+//        });
+        
+        $data_email = array( 'email' => $data['email'] );
+        
+        Mail::send('emails.welcome', [], function($message) use ($data_email) {
+            $message->to($data_email['email'])->subject('Cám ơn Quý khách đã đồng ý sử dụng dịch vụ của chúng tôi!');
         });
         
         return $user;

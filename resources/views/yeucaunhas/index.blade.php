@@ -1,78 +1,56 @@
 @extends('layouts.app_nha_ban')
 
+@section('title')
+    chodatso.com | Danh sách nhu cầu
+@stop
+
+@section('description')
+    Danh sách nhu cầu
+@stop
+
 @section('content')
-<script type="text/javascript">
-    function QuanTam($id){
-        var request = $.ajax({
-          url: "yeucaunha/follow",
-          method: "POST",
-          data: { id : $id, _token : "{{ csrf_token() }}" },
-          dataType: "json"
-        });
-         
-        request.done(function( msg ) {
-            if(msg.success == 1){
-                $("#add-product" + $id).css("display", 'none');
-                $("#remove-product" + $id).css("display", 'block');
-            }else{
-                alert("Có vấn đề xảy ra trong quá trình xóa, xin hãy báo cho người quản trị \nEmail: tran.thanh.tuan269@gmail.com \nXin chân thành cảm ơn Quý khách!");
-                window.setTimeout('location.reload()', 1000);
-            }
-
-          //$( "#log" ).html( msg );
-        });
-         
-        request.fail(function( jqXHR, textStatus ) {
-          alert( "Request failed: " + textStatus );
-        });
-    }
-
-    function BoQuanTam($id){
-        var request = $.ajax({
-          url: "yeucaunha/remove_follow",
-          method: "POST",
-          data: { id : $id, _token : "{{ csrf_token() }}" },
-          dataType: "json"
-        });
-         
-        request.done(function( msg ) {
-            if(msg.success == 1){
-                $("#remove-product" + $id).css("display", 'none');
-                $("#add-product" + $id).css("display", 'block');
-                window.setTimeout('location.reload()', 1000);
-            }else{
-                alert("Có vấn đề xảy ra trong quá trình xóa, xin hãy báo cho người quản trị \nEmail: tran.thanh.tuan269@gmail.com \nXin chân thành cảm ơn Quý khách!");
-                window.setTimeout('location.reload()', 1000);
-            }
-
-          //$( "#log" ).html( msg );
-        });
-         
-        request.fail(function( jqXHR, textStatus ) {
-          alert( "Request failed: " + textStatus );
-        });
-    }
-</script>
-
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Thông báo</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row end-row">
+            <div class="col-md-12">Yêu cầu của Quý khách đã được lưu lại thành công! Bất cứ khi nào có bất động sản phù hợp được bán tại khu vực mà Quý khách quan tâm, <span class="text-bold">chodatso.com</span> sẽ gửi thông báo ngay lập tức tới Quý khách! Cám ơn Quý khách đã sử dụng dịch vụ của chúng tôi!</div> <br />
+        </div>
+        <?php
+        if(count($tinbdss) <= 0) 
+        {
+            echo '<div class="row end-row">';
+            echo '<div class="col-md-12 text-center">Hiện tại, không tìm thấy bất động sản nào phù hợp! <br />Chúng tôi sẽ thông báo tới bạn ngay khi có nhà phù hợp! Xin cảm ơn!</div>';
+            echo '</div>';
+        }else{
+            echo '<div class="row end-row">';
+            echo '<div class="col-md-12"><span class="text-bold">chodatso.com</span> xin gửi tới Quý khách danh sách bất động sản phù hợp! Danh sách bao gồm những bất động sản được kiểm tra muộn nhất 1 tuần. <span class="text-bold">chodatso.com</span> xin được không chịu bất kỳ trách nhiệm nào nếu một trong các bất động sản phía dưới đã được bán! <br /> Mọi ý kiến đóng góp thông tin nhà đã bán, Quý khách vui lòng gửi email về địa chỉ <span class="text-bold">admin@chodatso.com</span>. Xin chân thành cảm ơn! </div>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+</div>
+    
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Kết quả tìm kiếm</h3>
     </div>
     <div class="panel-body">
-        <div class="row end-row">
         <?php 
-            if(count($tinbdss) <= 0) echo '<div class="text-center">Hiện tại, không tìm thấy bất động sản nào phù hợp! <br />Chúng tôi sẽ thông báo tới bạn ngay khi có nhà phù hợp! <br />Xin cảm ơn!</div>';
             foreach ($tinbdss as $tinbds) {
                 $temp = substr($tinbds->images,0,-1);
-                $images = explode( ';', $temp ); 
-                //var_dump($tinbds);
-                
+                $images = explode( ';', $temp );                 
         ?>
             <div class="col-xs-12 col-md-12 col-sm-12 image-product">
-                <div class="col-xs-4 col-md-4 col-sm-12 image-prod">
-                    <a href="{{URL::to('/')}}/{{ $tinbds->tin_id }}"><img src="{{ URL::to('/') }}/images/{{ $images[0] }}" class="img-thumbnail" alt="Responsive image"></a>
+                <div class="col-xs-12 col-sm-12 col-md-4 image-prod">
+                    <?php if(sizeof($images) > 1){ ?> 
+                        <a href="{{URL::to('/')}}/{{ $tinbds->tin_id }}"><img src="{{ URL::to('/') }}/images/{{ $images[0] }}" class="img-thumbnail" alt="Responsive image"></a>
+                    <?php }else{ ?>
+                        <a href="{{URL::to('/')}}/{{ $tinbds->tin_id }}"><img src="{{ URL::to('/') }}/images/home128_3.png" class="img-thumbnail" alt="Responsive image"></a>
+                    <?php } ?>
                 </div>
-                <div class="col-xs-8 col-md-8 col-sm-12 price-prod">
+                <div class="col-xs-12 col-sm-12 col-md-8 price-prod">
                     <div class="row">
                         <div class="col-xs-12 col-md-12 col-sm-12">
                             <span class="price-product">{{ $tinbds->gia / 1000000000 }} tỷ </span> - <span class="size-product">{{ $tinbds->dien_tich }} m<sup>2</sup></span>
@@ -90,57 +68,20 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-12 col-sm-12">
-                            <div id="add-product-{{ $tinbds->tin_id }}" class="btn btn-primary btn-block" onclick="QuanTam({{ $tinbds->tin_id }})" style="display:none;">Quan tâm</div>
-                            <div id="remove-product-{{ $tinbds->tin_id }}" class="btn btn-danger btn-block" onclick="BoQuanTam({{ $tinbds->tin_id }})" style="display:none;">Bỏ quan tâm</div>
-                        </div>
-                    </div>
                 </div>
                 
             </div>
         <?php 
-        }
+            }
         ?>
-        </div>
         <div class="row text-center">
             {{ $tinbdss->links() }}
         </div>
         <div class="row text-center">
-            <?php 
-                if(count($tinbdss) <= 0){
-                    ?>
-                    <a class="btn btn-default">Trở về trang chủ</a>
-            <?php
-                }else{
-                ?>
-            <div class="btn btn-primary" data-toggle="modal" data-target="#myModal">Gửi Email cho tôi</div>
-            <a class="btn btn-default">Trở về trang chủ</a>
-            <?php 
-                }
-                ?>
+            <a href="{{ url('/') }}" class="btn btn-default">Trở về trang chủ</a>
+            {!! link_to(URL::previous(), 'Trở về trang trước', ['class' => 'btn btn-default']) !!}
         </div>
     </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Gửi Email cho tôi</h4>
-      </div>
-      <div class="modal-body">
-        Một email bao gồm tất cả thông tin về những căn nhà mà Quý khách quan tâm sẽ được gửi tới Quý khách. Đồng thời với mỗi căn nhà, chủ nhà cũng nhận được email thông tin của Quý khách khi Quý khách thích căn nhà của họ. Hy vọng việc này sẽ giúp Quý khách và chủ nhà có những tương tác sớm, giúp Quý khách mua được căn nhà ưng ý. <br/>
-        Với mỗi căn nhà, website sẽ thu 10.000 vnđ phí duy trì dịch vụ. Số tiền này sẽ được dùng để liên hệ kiểm tra nhà đã được bán chưa trước khi giới thiệu đến Quý khách. Cám ơn Quý khách đã sử dụng dịch vụ của <span class="chodatso">chodatso.com</span>.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Thanh toán và gửi email</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng lại</button>
-      </div>
-    </div>
-  </div>
 </div>
         
 @endsection

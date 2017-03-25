@@ -74,7 +74,11 @@ class duanController extends Controller
      */
     public function show($id)
     {
-        $duan = Duan::findOrFail($id);
+        $duan = Duan::find($id);
+        
+        if($duan === null){
+            return view('errors.404');
+        }
 
         //dd($duan);
 
@@ -90,6 +94,10 @@ class duanController extends Controller
     public function edit($id)
     {
         $duan = Duan::find($id);
+        
+        if($duan === null){
+            return view('errors.404');
+        }
 
         $huyens = Huyen::pluck('name', 'id');
 

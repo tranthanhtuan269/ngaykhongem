@@ -71,7 +71,11 @@ class HuongController extends Controller
      */
     public function show($id)
     {
-        $huong = Huong::findOrFail($id);
+        $huong = Huong::find($id);
+        
+        if($huong === null){
+            return view('errors.404');
+        }
 
         //dd($huong);
 
@@ -87,6 +91,10 @@ class HuongController extends Controller
     public function edit($id)
     {
         $huong = Huong::find($id);
+        
+        if($huong === null){
+            return view('errors.404');
+        }
 
         if (is_null($huong))
         {
@@ -118,6 +126,10 @@ class HuongController extends Controller
         $input = $request->all();
 
         $huong = Huong::find($id);
+        
+        if($huong === null){
+            return view('errors.404');
+        }
 
         $huong->update($input);
 

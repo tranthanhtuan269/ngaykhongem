@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+    chodatso.com | Sửa dự án
+@stop
+
+@section('description')
+    Sửa dự án đã được tạo.
+@stop
+
 @section('content')
 
 <h1>Sửa Dự án {{ $duan->name }}</h1>

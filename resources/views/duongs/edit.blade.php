@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+    chodatso.com | Sửa một đường đã được tạo
+@stop
+
+@section('description')
+    Sửa một đường đã được tạo.
+@stop
+
 @section('content')
 
 <h1>Sửa Đường {{ $duong->name }}</h1>

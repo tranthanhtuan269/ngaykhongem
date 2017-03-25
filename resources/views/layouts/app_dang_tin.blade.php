@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="vn">
+<html lang="vi">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-    <link rel="shortcut icon" href="{{ URL::to('/') }}/images/home.png" />
-    <title>chodatso</title>
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="chodatso, chodat, datso, cho, dat, so, cần mua nhà, nhà bán, mua bán nhà, Hà Nội, tìm mua nhà, nhaban, bán nhà mặt phố, nhà mặt tiền, sổ đỏ, chỉnh chủ, sdcc, giá rẻ">
+    <meta name="copyright" content="©2016 chodatso.com" />
+    <meta name="robots" content="follow" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name='revisit-after' content='1 days' />
+    <meta name="google-site-verification" content="vjUotcB0Mrw3NVPiKaTE6ipwe9L_OmOih-cYbuwlCDA" />
     
     <!-- Font awesome -->
     <link href="{{ URL::to('/') }}/css/font-awesome.css" rel="stylesheet">
@@ -16,20 +22,16 @@
     <!-- Theme color -->
     <link id="switcher" href="{{ URL::to('/') }}/css/theme-color/default-theme.css" rel="stylesheet">
 
-
-    <link rel="stylesheet" href="{{ URL::to('/') }}/css/main.css" />
     <script type="text/JavaScript" src="{{ URL::to('/') }}/js/sha512.js"></script> 
     <script type="text/JavaScript" src="{{ URL::to('/') }}/js/forms.js"></script> 
     <!-- jQuery library -->
     <script src="{{ URL::to('/') }}/js/jquery.min.js"></script>
     <script src="{{ URL::to('/') }}/js/priceFormat.js"></script>
 
-<!--    <script src="{{ URL::to('/') }}/dist/js/unslider-min.js"></script>
-    <link rel="stylesheet" href="{{ URL::to('/') }}/dist/css/unslider.css">
-    <link rel="stylesheet" href="{{ URL::to('/') }}/dist/css/unslider-dots.css">-->
-
     <!-- Main style sheet -->
     <link href="{{ URL::to('/') }}/css/style.css" rel="stylesheet">    
+    <link href="{{ URL::to('/') }}/css/main.css" rel="stylesheet">  
+    <link href="{{ URL::to('/') }}/css/customize.css" rel="stylesheet"> 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -37,20 +39,11 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <!-- !Important notice -->
   <!-- Only for product page body tag have to added .productPage class -->
   <body class="productPage">  
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-86220808-1', 'auto');
-        ga('send', 'pageview');
-
-      </script>
    <!-- wpf loader Two -->
     <div id="wpf-loader-two">          
       <div class="wpf-loader-two-inner">
@@ -84,8 +77,8 @@
                 <ul class="aa-head-top-nav-right">
                   <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/login') }}">Đăng nhập</a></li>
+                        <li><a href="{{ url('/register') }}">Đăng ký</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -93,7 +86,10 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{ url('/trang-ca-nhan') }}"><i class="glyphicon glyphicon-user"></i>Trang cá nhân</a></li>
+                                <li><a href="{{ url('/quan-ly-tai-khoan') }}"><i class="glyphicon glyphicon-sort"></i>Quản lý giao dịch</a></li>
+                                <li><a href="{{ url('/nap-tien') }}"><i class="glyphicon glyphicon-usd"></i>Nạp tiền</a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="glyphicon glyphicon-log-out"></i>Thoát</a></li>
                             </ul>
                         </li>
                     @endif
@@ -117,7 +113,7 @@
                 <!-- Text based logo -->
                 <a href="{{ URL::to('/') }}/">
                   <span class="fa fa-home"></span>
-                  <p>chodatso<strong>.com</strong> <span>Kênh thông tin bất động sản</span><span>lớn nhất Việt Nam</span></p>
+                  <p>chodatso<strong>.com</strong> <span>Kết nối ngay lập tức</span><span>người bán với người mua</span></p>
                 </a>
                 <!-- img based logo -->
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
@@ -162,10 +158,10 @@
               <li><a href="{{ URL::to('/') }}/">Cho thuê</span></a></li>
               <li><a href="/nha-dat-can-mua">Cần mua</span></a></li>
               <li><a href="{{ URL::to('/') }}/nha-dat-can-thue">Cần thuê</a></li> -->
-              <li><a href="{{ URL::to('/') }}/xaydung">Xây dựng</a></li>
-              <li><a href="{{ URL::to('/') }}/kientruc">Kiến trúc</a></li>
-              <li><a href="{{ URL::to('/') }}/noithat">Nội thất</a></li>
-              <li><a href="{{ URL::to('/') }}/ngoaithat">Ngoại thất</a></li>
+              <li><a href="{{ URL::to('/') }}/xay-dung">Xây dựng</a></li>
+              <li><a href="{{ URL::to('/') }}/kien-truc">Kiến trúc</a></li>
+              <li><a href="{{ URL::to('/') }}/noi-that">Nội thất</a></li>
+              <li><a href="{{ URL::to('/') }}/ngoai-that">Ngoại thất</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -178,14 +174,14 @@
   <section id="aa-catg-head-banner" class="banner-image">
   </section>
   <!-- / catg header banner section -->
-<div class="clear-fix"></div>
+<div class="clearfix"></div>
 
 <div class="container-fluid">    
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-9">
             @yield('content')
         </div>
-        <div class="col-md-2 sidebar-left">
+        <div class="col-md-3 sidebar-left">
           @if (Auth::guest())
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -198,22 +194,20 @@
                     <li class="list-group-item"><?php echo link_to_action('KhuvucController@show', $title = "Bình Dương", $parameters = array("id"=>14), $attributes = array()); ?></li>
                 </ul>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">TIN GỌI NHIỀU</h3>
-                </div>
-                <ul class="list-group">
-                    {!! Widget::menubar('tingoinhieu') !!}
-                </ul>
-            </div>
             @else
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">QUẢN LÝ</h3>
                 </div>
                 <ul class="list-group">
+                    <?php if(\Auth::user()->coins <= 0){ ?>
+                    <li class="list-group-item"><?php echo link_to_action('ActionController@thongbao', $title = "Thông báo(1)", $parameters = array(), $attributes = array('class'=>'red-text')); ?></li>
+                    <?php } ?>
                     <li class="list-group-item"><?php echo link_to_action('HomeController@trangcanhan', $title = "Cập nhật thông tin", $parameters = array(), $attributes = array()); ?></li>
                     <li class="list-group-item"><?php echo link_to_action('TinBDSController@index', $title = "Quản lý tin", $parameters = array(), $attributes = array()); ?></li>
+                    <li class="list-group-item"><?php echo link_to_action('ActionController@quanlyyeucau', $title = "Quản lý yêu cầu", $parameters = array(), $attributes = array()); ?></li>
+                    <li class="list-group-item"><?php echo link_to_action('HomeController@quanlytaikhoan', $title = "Quản lý tài khoản", $parameters = array(), $attributes = array()); ?></li>
+                    <li class="list-group-item"><?php echo link_to_action('ActionController@naptien', $title = "Nạp tiền", $parameters = array(), $attributes = array()); ?></li>
                     <li class="list-group-item">
                       {{ link_to_route('tinbds.create', 'Đăng tin') }}
                     </li>
@@ -225,7 +219,7 @@
 </div>
 
   <!-- footer -->  
-  <footer id="aa-footer">
+<footer id="aa-footer">
     <!-- footer bottom -->
     <div class="aa-footer-top">
      <div class="container">
@@ -233,7 +227,7 @@
         <div class="col-md-12">
           <div class="aa-footer-top-area">
             <div class="row">
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-4">
                 <div class="aa-footer-widget">
                   <h3>Trang chính</h3>
                   <ul class="aa-footer-nav">
@@ -245,34 +239,33 @@
                   </ul>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-4">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
                     <h3>Dịch vụ cơ bản</h3>
                     <ul class="aa-footer-nav">
-                      <li><a href="#">Nhà bán gấp</a></li>
-                      <li><a href="#">Khách mua gấp</a></li>
-                      <li><a href="#">Nhà đã bán</a></li>
+                      <li><a href="{{ URL::to('/') }}/nha-chua-duyet">Nhà chưa duyệt</a></li>
+                      <li><a href="{{ URL::to('/') }}/nha-da-ban">Nhà đã bán</a></li>
+                      <li><a href="{{ URL::to('/') }}/khach-quan-tam">Khách quan tâm</a></li>
                       <li><a href="#">Phản hồi khách mua</a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-4">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
                     <h3>Trang trợ giúp</h3>
                     <ul class="aa-footer-nav">
-                      <li><a href="#">Cấu trúc website</a></li>
-                      <li><a href="#">Tìm kiếm cơ bản</a></li>
-                      <li><a href="#">Tìm kiếm nâng cao</a></li>
-                      <li><a href="#">Hỗ trợ trực tuyến</a></li>
-                      <li><a href="#">Câu hỏi thường gặp</a></li>
+                      <li><a href="{{ URL::to('/') }}/price-policy">Báo giá sản phẩm</a></li>
+                      <li><a href="{{ URL::to('/') }}/privacy-policy">Chính sách bảo mật</a></li>
+                      <li><a href="{{ URL::to('/') }}/terms-of-service">Điều khoản dịch vụ</a></li>
+                      <li><a href="{{ URL::to('/') }}/questions-and-answers">Câu hỏi thường gặp</a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-12">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
                     <h3>Liên hệ với chúng tôi</h3>
@@ -296,24 +289,6 @@
       </div>
      </div>
     </div>
-    <!-- footer-bottom -->
-    <!-- <div class="aa-footer-bottom">
-      <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-          <div class="aa-footer-bottom-area">
-            <p>Designed by <a href="http://www.markups.io/">MarkUps.io</a></p>
-            <div class="aa-footer-payment">
-              <span class="fa fa-cc-mastercard"></span>
-              <span class="fa fa-cc-visa"></span>
-              <span class="fa fa-paypal"></span>
-              <span class="fa fa-cc-discover"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </div> -->
   </footer>
   <!-- / footer -->
   <!-- Login Modal -->  
@@ -349,16 +324,6 @@
   <script src="{{ URL::to('/') }}/js/custom.js"></script> 
   <script type="text/javascript">
     $(document).ready(function(){
-//      $('.my-slider').unslider({
-//        //animation: 'vertical', 
-//        autoplay: true, 
-//        infinite: true, 
-//        arrows: false,
-//        infinite: true
-//      });
-//
-//      $(".unslider").css("text-align","center");
-
       $("#tinh").change(function() {
         var tinhId = $("#tinh").val();
         var request = $.ajax({

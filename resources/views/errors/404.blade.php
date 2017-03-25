@@ -1,48 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Be right back.</title>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="panel panel-default main-content">
+    <div class="panel-heading">
+        <h3 class="panel-title">Không tìm thấy trang bạn muốn...</h3>
+    </div>
+</div>
         
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">{{ $errors }}</div>
-            </div>
-        </div>
-    </body>
-</html>
+@endsection

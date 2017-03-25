@@ -74,7 +74,11 @@ class PhoController extends Controller
      */
     public function show($id)
     {
-        $pho = Pho::findOrFail($id);
+        $pho = Pho::find($id);
+        
+        if($pho === null){
+            return view('errors.404');
+        }
 
         //dd($pho);
 
@@ -90,6 +94,10 @@ class PhoController extends Controller
     public function edit($id)
     {
         $pho = Pho::find($id);
+        
+        if($pho === null){
+            return view('errors.404');
+        }
 
         $huyens = Huyen::pluck('name', 'id');
 
@@ -123,6 +131,10 @@ class PhoController extends Controller
         $input = $request->all();
 
         $pho = Pho::find($id);
+        
+        if($pho === null){
+            return view('errors.404');
+        }
 
         $pho->update($input);
 

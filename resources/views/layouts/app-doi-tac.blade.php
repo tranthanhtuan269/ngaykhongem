@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="vn">
+<html lang="vi">
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">   
     <link rel="shortcut icon" href="{{ URL::to('/') }}/images/home.png" />
-    <title>chodatso</title>
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('description')">
+    <meta name="keywords" content="chodatso, chodat, datso, cho, dat, so, cần mua nhà, nhà bán, mua bán nhà, Hà Nội, tìm mua nhà, nhaban, bán nhà mặt phố, nhà mặt tiền, sổ đỏ, chỉnh chủ, sdcc, giá rẻ">
+    <meta name="copyright" content="©2016 chodatso.com" />
+    <meta name="robots" content="follow" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name='revisit-after' content='1 days' />
     
     <!-- Font awesome -->
     <link href="{{ URL::to('/') }}/css/font-awesome.css" rel="stylesheet">
@@ -24,12 +30,9 @@
     <script src="{{ URL::to('/') }}/js/jquery.min.js"></script>
     <script src="{{ URL::to('/') }}/js/priceFormat.js"></script>
 
-    <script src="{{ URL::to('/') }}/dist/js/unslider-min.js"></script>
-    <link rel="stylesheet" href="{{ URL::to('/') }}/dist/css/unslider.css">
-    <link rel="stylesheet" href="{{ URL::to('/') }}/dist/css/unslider-dots.css">
-
     <!-- Main style sheet -->
-    <link href="{{ URL::to('/') }}/css/style.css" rel="stylesheet">    
+    <link href="{{ URL::to('/') }}/css/style.css" rel="stylesheet">  
+    <link href="{{ URL::to('/') }}/css/customize.css" rel="stylesheet"> 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -93,7 +96,10 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                <li><a href="{{ url('/trang-ca-nhan') }}"><i class="glyphicon glyphicon-user"></i>Trang cá nhân</a></li>
+                                <li><a href="{{ url('/quan-ly-tai-khoan') }}"><i class="glyphicon glyphicon-sort"></i>Quản lý giao dịch</a></li>
+                                <li><a href="{{ url('/nap-tien') }}"><i class="glyphicon glyphicon-usd"></i>Nạp tiền</a></li>
+                                <li><a href="{{ url('/logout') }}"><i class="glyphicon glyphicon-log-out"></i>Thoát</a></li>
                             </ul>
                         </li>
                     @endif
@@ -117,7 +123,7 @@
                 <!-- Text based logo -->
                 <a href="{{ URL::to('/') }}/">
                   <span class="fa fa-home"></span>
-                  <p>chodatso<strong>.com</strong> <span>Kênh thông tin bất động sản</span><span>lớn nhất Việt Nam</span></p>
+                  <p>chodatso<strong>.com</strong> <span>Kết nối ngay lập tức</span><span>người bán với người mua</span></p>
                 </a>
                 <!-- img based logo -->
                 <!-- <a href="index.html"><img src="img/logo.jpg" alt="logo img"></a> -->
@@ -162,10 +168,10 @@
               <li><a href="{{ URL::to('/') }}/">Cho thuê</span></a></li>
               <li><a href="/nha-dat-can-mua">Cần mua</span></a></li>
               <li><a href="{{ URL::to('/') }}/nha-dat-can-thue">Cần thuê</a></li> -->
-              <li><a href="{{ URL::to('/') }}/xaydung">Xây dựng</a></li>
-              <li><a href="{{ URL::to('/') }}/kientruc">Kiến trúc</a></li>
-              <li><a href="{{ URL::to('/') }}/noithat">Nội thất</a></li>
-              <li><a href="{{ URL::to('/') }}/ngoaithat">Ngoại thất</a></li>
+              <li><a href="{{ URL::to('/') }}/xay-dung">Xây dựng</a></li>
+              <li><a href="{{ URL::to('/') }}/kien-truc">Kiến trúc</a></li>
+              <li><a href="{{ URL::to('/') }}/noi-that">Nội thất</a></li>
+              <li><a href="{{ URL::to('/') }}/ngoai-that">Ngoại thất</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -176,64 +182,7 @@
  
   <!-- catg header banner section -->
   <section id="aa-catg-head-banner" class="banner-image">
-    <form class="form-horizontal col-sm-offset-1 col-sm-4" style="border-radius: 6px;padding-top: 8px;margin-top: 5px;background: rgba(255,255,255,0.5);" action="{{URL::to('/')}}/timkiem" method="post">
-      <input type="hidden" name="_token" value="{{ csrf_token() }}">
-      <div class="form-group">
-        <label for="loaibds" class="col-sm-5 control-label">Loại BĐS</label>
-        <div class="col-sm-7">
-          <select class="form-control" id="loaibds" name="loaibds"><option value="0">--Chọn loại nhà--</option><option value="1">Nhà mặt phố</option><option value="2">Nhà ngõ, hẻm</option><option value="3">Biệt thự</option><option value="4">Căn hộ chung cư</option><option value="5">Phòng trọ, nhà trọ</option><option value="6">Văn phòng</option><option value="7">Kho, xưởng</option><option value="8">Nhà hàng, khách sạn</option><option value="9">Shop, kiot, quán</option><option value="10">Trang trại</option><option value="11">Mặt bằng</option><option value="12">Đất</option><option value="13">Đất nền, phân lô</option><option value="14">Đất nông, lâm nghiệp</option><option value="15">Các loại khác</option></select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="tinh" class="col-sm-5 control-label">Tỉnh / Thành phố</label>
-        <div class="col-sm-7">
-          <select class="form-control" id="tinh" name="tinh"><option value="0">--Chọn Tỉnh / Thành Phố--</option><option value="1">Hà Nội</option><option value="2">Hồ Chí Minh</option><option value="3">Đà Nẵng</option><option value="4">Hải Phòng</option><option value="5">Cần Thơ</option><option value="6">An Giang</option><option value="7">Bà Rịa Vũng Tàu</option><option value="8">Bạc Liêu</option><option value="9">Bắc Cạn</option><option value="10">Bắc Giang</option><option value="11">Hải Dương</option><option value="12">Bắc Ninh</option><option value="13">Bến Tre</option><option value="14">Bình Dương</option><option value="15">Bình Định</option><option value="16">Bình Phước</option><option value="17">Bình Thuận</option><option value="18">Cà Mau</option><option value="19">Cao Bằng</option><option value="20">Đắk Lắk</option><option value="21">Đăk Nông</option><option value="22">Điện Biên</option><option value="23">Đồng Nai</option><option value="24">Đồng Tháp</option><option value="25">Gia Lai</option><option value="26">Hà Giang</option><option value="27">Hà Nam</option><option value="28">Hà Tĩnh</option><option value="29">Hậu Giang</option><option value="30">Hòa Bình</option><option value="31">Hưng Yên</option><option value="32">Khánh Hòa</option><option value="33">Kiên Giang</option><option value="34">Kon Tum</option><option value="35">Lai Châu</option><option value="36">Lâm Đồng</option><option value="37">Lạng Sơn</option><option value="38">Lào Cai</option><option value="39">Long An</option><option value="40">Nam Định</option><option value="41">Nghệ An</option><option value="42">Ninh Bình</option><option value="43">Ninh Thuận</option><option value="44">Phú Thọ</option><option value="45">Phú Yên</option><option value="46">Quảng Bình</option><option value="47">Quảng Nam</option><option value="48">Quảng Ngãi</option><option value="49">Quảng Ninh</option><option value="50">Quảng Trị</option><option value="51">Sóc Trăng</option><option value="52">Sơn La</option><option value="53">Tây Ninh</option><option value="54">Thái Bình</option><option value="55">Thái Nguyên</option><option value="56">Thanh Hóa</option><option value="57">Huế</option><option value="58">Tiền Giang</option><option value="59">Trà Vinh</option><option value="60">Tuyên Quang</option><option value="61">Vĩnh Long</option><option value="62">Vĩnh Phúc</option><option value="63">Yên Bái</option></select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="huyen" class="col-sm-5 control-label">Quận / Huyện</label>
-        <div class="col-sm-7">
-          <select class="form-control" id="huyen" name="huyen"><option value="0">--Chọn Quận / Huyện--</option></select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="gia" class="col-sm-5 control-label">Mức giá</label>
-        <div class="col-sm-7">
-          <select class="form-control" name="gia">
-            <option value="0">--Chọn mức giá--</option>
-            <option value="1">Dưới 1 tỷ</option>
-            <option value="2">Từ 1 tới 3 tỷ</option>
-            <option value="3">Từ 3 tới 5 tỷ</option>
-            <option value="4">Từ 5 tới 10 tỷ</option>
-            <option value="5">Hơn 10 tỷ</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="dien_tich" class="col-sm-5 control-label">Diện tích</label>
-        <div class="col-sm-7">
-          <select class="form-control" name="dien_tich">
-            <option value="0">--Chọn diện tích--</option>
-            <option value="1">Dưới 30 m2</option>
-            <option value="2">Từ 30 tới 50 m2</option>
-            <option value="3">Từ 50 tới 100 m2</option>
-            <option value="4">Từ 100 tới 300 m2</option>
-            <option value="5">Hơn 300 m2</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="huong" class="col-sm-5 control-label">Hướng nhà</label>
-        <div class="col-sm-7">
-          <select class="form-control" name="huong_nha"><option value="0">--Chọn hướng nhà--</option><option value="1">Không xác định</option><option value="2">Đông</option><option value="3">Tây</option><option value="4">Nam</option><option value="5">Bắc</option><option value="6">Đông Nam</option><option value="7">Đông Bắc</option><option value="8">Tây Nam</option><option value="9">Tây Bắc</option></select>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-5 col-sm-7">
-          <button type="submit" class="btn btn-default">Tìm kiếm</button>
-        </div>
-      </div>
-    </form>
+    
   </section>
   <!-- / catg header banner section -->
 <div class="clear-fix"></div>
@@ -255,7 +204,7 @@
         <div class="col-md-12">
           <div class="aa-footer-top-area">
             <div class="row">
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-4">
                 <div class="aa-footer-widget">
                   <h3>Trang chính</h3>
                   <ul class="aa-footer-nav">
@@ -267,34 +216,33 @@
                   </ul>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-4">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
                     <h3>Dịch vụ cơ bản</h3>
                     <ul class="aa-footer-nav">
-                      <li><a href="#">Nhà bán gấp</a></li>
-                      <li><a href="#">Khách mua gấp</a></li>
-                      <li><a href="#">Nhà đã bán</a></li>
+                      <li><a href="{{ URL::to('/') }}/nha-chua-duyet">Nhà chưa duyệt</a></li>
+                      <li><a href="{{ URL::to('/') }}/nha-da-ban">Nhà đã bán</a></li>
+                      <li><a href="{{ URL::to('/') }}/khach-quan-tam">Khách quan tâm</a></li>
                       <li><a href="#">Phản hồi khách mua</a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-4">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
                     <h3>Trang trợ giúp</h3>
                     <ul class="aa-footer-nav">
-                      <li><a href="#">Cấu trúc website</a></li>
-                      <li><a href="#">Tìm kiếm cơ bản</a></li>
-                      <li><a href="#">Tìm kiếm nâng cao</a></li>
-                      <li><a href="#">Hỗ trợ trực tuyến</a></li>
-                      <li><a href="#">Câu hỏi thường gặp</a></li>
+                      <li><a href="{{ URL::to('/') }}/price-policy">Báo giá sản phẩm</a></li>
+                      <li><a href="{{ URL::to('/') }}/privacy-policy">Chính sách bảo mật</a></li>
+                      <li><a href="{{ URL::to('/') }}/terms-of-service">Điều khoản dịch vụ</a></li>
+                      <li><a href="{{ URL::to('/') }}/questions-and-answers">Câu hỏi thường gặp</a></li>
                     </ul>
                   </div>
                 </div>
               </div>
-              <div class="col-md-3 col-sm-6">
+              <div class="col-md-3 col-sm-12">
                 <div class="aa-footer-widget">
                   <div class="aa-footer-widget">
                     <h3>Liên hệ với chúng tôi</h3>
@@ -353,16 +301,6 @@
   <script src="{{ URL::to('/') }}/js/custom.js"></script> 
   <script type="text/javascript">
     $(document).ready(function(){
-      $('.my-slider').unslider({
-        //animation: 'vertical', 
-        autoplay: true, 
-        infinite: true, 
-        arrows: false,
-        infinite: true
-      });
-
-      $(".unslider").css("text-align","center");
-
       $("#tinh").change(function() {
         var tinhId = $("#tinh").val();
         var request = $.ajax({

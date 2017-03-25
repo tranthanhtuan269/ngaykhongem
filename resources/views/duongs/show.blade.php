@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('title')
+    chodatso.com | Hiển thị một đường đã được tạo
+@stop
+
+@section('description')
+    Hiển thị một đường đã được tạo.
+@stop
+
 @section('content')
 
 <h1>Đường {{ $duong->name }}</h1>

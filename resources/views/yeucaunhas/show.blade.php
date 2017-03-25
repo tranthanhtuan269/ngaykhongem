@@ -1,5 +1,13 @@
 @extends('layouts.app_nguoi_mua')
 
+@section('title')
+    chodatso.com | Thông tin nhu cầu
+@stop
+
+@section('description')
+    Thông tin nhu cầu
+@stop
+
 @section('content')
 <div class="table-responsive">
     <table class="table table-striped table-bordered">
@@ -27,12 +35,6 @@
                     </div>
 
                     <div class="big-field">Người đăng: {{ $yeucaunha->name }} <span class="alert alert-danger">Mua gấp</span></div>
-                    @if (Auth::guest())
-                    <div class="big-field"><a href="{{ url('/login') }}" class="red-text">Đăng nhập để xem!</a></div>
-                    @else
-                        <div class="big-field">Điện thoại: {{ $yeucaunha->phone }}</div>
-                    @endif
-
                     <div class="big-field">Tầm tiền: <span class="price-format"> {{ $yeucaunha->tam_tien / 1000000000 }}</span> tỷ VNĐ</div>
 
                     <div class="big-field">Diện tích: {{ $yeucaunha->dien_tich }} m <sup>2</sup></div>

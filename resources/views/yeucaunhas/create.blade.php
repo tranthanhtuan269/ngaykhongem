@@ -1,5 +1,12 @@
 @extends('layouts.app_dang_tin')
 
+@section('title')
+    chodatso.com | Đăng nhu cầu mua nhà
+@stop
+
+@section('description')
+    Đăng nhu cầu mua nhà
+@stop
 @section('content')
 
 <!-- include libraries(jQuery, bootstrap) -->
@@ -11,7 +18,7 @@
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
-<h1 class="text-center">Đăng yêu cầu</h1>
+<h1 class="text-center">Đăng yêu cầu mua nhà</h1>
 <hr>
 
 @if($errors->any())
@@ -60,82 +67,86 @@
     </div>
 </div>
 
-<div class="form-group">
+<div class="form-group sr-only">
     {!! Form::label('duan', 'Tên dự án:', ['class' => 'col-sm-2 control-label']) !!}
     <div class="col-sm-10">
         <select class="form-control" id="duanSelect" name="duan"><option value="0">--Chọn Dự án--</option></select>
     </div>
 </div>
 
+<hr />
 <div class="form-group">
     {!! Form::label('tam_tien', 'Tầm tiền:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-    {!! Form::text('tam_tien', null, ['class' => 'form-control', 'placeholder' => 'Tầm tiền (VNĐ)']) !!}
+    <div class="col-sm-5">
+    {!! Form::number('tam_tien', null, ['class' => 'form-control', 'placeholder' => 'Tầm tiền (VNĐ)']) !!}
     </div>
+    <div class="col-sm-5 price-sub"><span>0 Tỷ đồng</span></div>
 </div>
 
 <div class="form-group">
     {!! Form::label('loaibds', 'Loại BĐS:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
+    <div class="col-sm-5">
     {!! Form::select('loaibds', $loaibdss, null, array('class' => 'form-control')) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('dien_tich', 'Diện tích:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-    {!! Form::text('dien_tich', null, ['class' => 'form-control', 'placeholder' => 'Diện tích (m2)']) !!}
+    <div class="col-sm-5">
+    {!! Form::number('dien_tich', null, ['class' => 'form-control', 'placeholder' => 'Diện tích (m2)']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('mat_tien', 'Mặt tiền:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-    {!! Form::text('mat_tien', null, ['class' => 'form-control', 'placeholder' => 'Mặt tiền (m)']) !!}
+    <div class="col-sm-5">
+    {!! Form::number('mat_tien', null, ['class' => 'form-control', 'placeholder' => 'Mặt tiền (m)']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('duong_vao', 'Đường vào:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-    {!! Form::text('duong_vao', null, ['class' => 'form-control', 'placeholder' => 'Đường vào (m)']) !!}
+    <div class="col-sm-5">
+    {!! Form::number('duong_vao', null, ['class' => 'form-control', 'placeholder' => 'Đường vào (m)']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('huong', 'Hướng nhà:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
+    <div class="col-sm-5">
     {!! Form::select('huong_nha', $huongs, null, array('class' => 'form-control')) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('tang', 'Số tầng:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-    {!! Form::text('tang', null, ['class' => 'form-control', 'placeholder' => 'Số tầng']) !!}
+    <div class="col-sm-5">
+    {!! Form::number('tang', null, ['class' => 'form-control', 'placeholder' => 'Số tầng']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('phong_ngu', 'Số phòng ngủ:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-    {!! Form::text('phong_ngu', null, ['class' => 'form-control', 'placeholder' => 'Số phòng ngủ']) !!}
+    <div class="col-sm-5">
+    {!! Form::number('phong_ngu', null, ['class' => 'form-control', 'placeholder' => 'Số phòng ngủ']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('phong_khach', 'Số phòng khách:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-    {!! Form::text('phong_khach', null, ['class' => 'form-control', 'placeholder' => 'Số phòng khách']) !!}
+    <div class="col-sm-5">
+    {!! Form::number('phong_khach', null, ['class' => 'form-control', 'placeholder' => 'Số phòng khách']) !!}
     </div>
 </div>
 
 <div class="form-group">
     {!! Form::label('wc', 'Nhà vệ sinh:', ['class' => 'col-sm-2 control-label']) !!}
-    <div class="col-sm-10">
-    {!! Form::text('wc', null, ['class' => 'form-control', 'placeholder' => 'Số nhà vệ sinh']) !!}
+    <div class="col-sm-5">
+    {!! Form::number('wc', null, ['class' => 'form-control', 'placeholder' => 'Số nhà vệ sinh']) !!}
     </div>
 </div>
+
+<hr />
 
 <div class="form-group">
     {!! Form::label('kinh_doanh', 'Nhu cầu:', ['class' => 'col-sm-2 control-label']) !!}
@@ -143,11 +154,11 @@
     {!! Form::label('mua_gap', 'Mua gấp', ['class' => 'control-label']) !!}
     {{ Form::checkbox('mua_gap', 1, true) }}
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
     {!! Form::label('kinh_doanh', 'Để kinh doanh', ['class' => 'control-label']) !!}
     {{ Form::checkbox('kinh_doanh', 1, true) }}
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
     {!! Form::label('dau_tu', 'Để đầu tư', ['class' => 'control-label']) !!}
     {{ Form::checkbox('dau_tu', 1, true) }}
     </div>
@@ -167,7 +178,7 @@
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
     {!! Form::submit('Tạo mới', ['class' => 'btn btn-primary']) !!}
-    <div class="btn btn-default"><a href="{{URL::to('/')}}/timnhaban">Danh sách tin</a></div>
+    <div class="btn btn-default"><a href="{{URL::to('/')}}/tim-nha-ban">Danh sách tin</a></div>
 </div>
 
 {!! Form::close() !!}
@@ -175,12 +186,28 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
+    $("#tam_tien").on('keyup keypress', function(e) {
+      if($("#tam_tien").val().length > 13){
+          $("#tam_tien").val($("#tam_tien").val().substring(0,13));
+      }
+      $('.price-sub span').html($(this).val() / 1000000000);
+    });
+    
   $('#create_tinbds').on('keyup keypress', function(e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode === 13) { 
       e.preventDefault();
       return false;
     }
+  });
+  
+  $("#tam_tien").on('keyup keypress', function(e) {
+      if($("#tam_tien").val().length > 8){
+          $("#tam_tien").val($("#tam_tien").val().substring(0,8));
+      }
+      if($(this).val() > 0 && $(this).val() < 1000) $('.price-sub span').html($(this).val() + " Triệu đồng");
+      if($(this).val() >= 1000) $('.price-sub span').html($(this).val() / 1000 + " Tỉ đồng");
+      //$('.price-sub span').html($(this).val() / 1000000);
   });
 
   $("#tinhSelect").change(function() {

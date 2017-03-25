@@ -73,7 +73,11 @@ class HuyenController extends Controller
      */
     public function show($id)
     {
-        $huyen = Huyen::findOrFail($id);
+        $huyen = Huyen::find($id);
+        
+        if($huong === null){
+            return view('errors.404');
+        }
 
         //dd($huyen);
 
@@ -89,6 +93,10 @@ class HuyenController extends Controller
     public function edit($id)
     {
         $huyen = Huyen::find($id);
+        
+        if($huong === null){
+            return view('errors.404');
+        }
 
         $tinhs = Tinh::pluck('name', 'id');
 
@@ -122,6 +130,10 @@ class HuyenController extends Controller
         $input = $request->all();
 
         $huyen = Huyen::find($id);
+        
+        if($huong === null){
+            return view('errors.404');
+        }
 
         $huyen->update($input);
 

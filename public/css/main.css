@@ -13,6 +13,8 @@
 
 .title-product{
   margin-top: 0px;
+  display: block;
+  height: 68px;
 }
 
 .aa-catg-head-banner{
@@ -70,7 +72,7 @@
   width: 100%;height: 375px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('../images/home4.jpg');
+  background-image: url('../images/home5.jpg');
 }
 
 .search-form{
@@ -92,7 +94,7 @@
 }
 
 .alert{
-  padding: 8px;
+  padding: 3px;
 }
 
 .text-bold{
@@ -155,9 +157,49 @@
   height: 375px;
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('../images/home4.jpg');
+  background-image: url('../images/HOME_2016.jpg');
 }
 
 .red-text{
     color:red;
+}
+
+.span-note-1{
+    font-weight: bold;
+    font-size: 20px;
+    margin: 8px 10px 8px 10px;
+}
+
+.span-note-2{
+    font-size: 18px;
+    margin: 8px 10px 8px 10px;
+}
+
+.span-note-3{
+    font-size: 16px;
+    margin: 8px 10px 8px 20px;
+}
+
+.text-normal{
+    color: #000;
+}
+
+.margin10{
+    margin: 10px;
+}
+
+.price-sub{
+    color: #ccc;
+    margin-top: 10px;
+}
+
+.a-product{
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ccc;
+}
+
+.delete_btn{
+    position: relative;
+    top: -36px;
+    left: 110px;
 }

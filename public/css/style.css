@@ -358,7 +358,7 @@ img {
 #aa-header .aa-header-top .aa-header-top-right .aa-head-top-nav-right li a {
   display: inline-block;
   color: #333333;
-  border-right: 1px solid #ddd;
+/*  border-right: 1px solid #ddd;*/
   font-size: 14px;
   padding: 5px 8px;
 }
@@ -3880,9 +3880,9 @@ img {
     margin-bottom: 0;
     padding: 3px 10px;
   }
-
-  #aa-catg-head-banner {
-    height: 100px;
+  
+  .banner-image{
+      height: 112px!important;
   }
 
   #aa-catg-head-banner img {

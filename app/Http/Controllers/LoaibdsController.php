@@ -71,7 +71,11 @@ class LoaibdsController extends Controller
      */
     public function show($id)
     {
-        $loaibds = Loaibds::findOrFail($id);
+        $loaibds = Loaibds::find($id);
+        
+        if($loaibds === null){
+            return view('errors.404');
+        }
 
         //dd($loaibds);
 
@@ -118,6 +122,10 @@ class LoaibdsController extends Controller
         $input = $request->all();
 
         $loaibds = Loaibds::find($id);
+        
+        if($loaibds === null){
+            return view('errors.404');
+        }
 
         $loaibds->update($input);
 

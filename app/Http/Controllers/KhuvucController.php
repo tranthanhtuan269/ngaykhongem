@@ -21,12 +21,14 @@ class KhuvucController extends Controller
                     ->join('users', 'users.id', '=', 'tinbdss.nguoi_dang')
                     ->select('tinbdss.*', 'tinbdss.id as tin_id', 'users.*', 'duongs.name as ten_duong', 'phos.name as ten_pho', 'huyens.name as ten_huyen', 'tinhs.name as ten_tinh')
                     ->where('tinhs.id', '=', $id)
+                    ->where('tinbdss.active', '=', 1)
+                    ->where('tinbdss.da_ban', '=', 0)
                     ->paginate(8);
 
         $tinh = Tinh::find($id);
 
         if($tinh == null){
-        	return view('errors.404')->withErrors("File not found!");
+        	return view('errors.404');
         }
 
 
@@ -48,7 +50,7 @@ class KhuvucController extends Controller
         $loaibds = Loaibds::find($id);
 
         if($loaibds == null){
-            return view('errors.404')->withErrors("File not found!");
+            return view('errors.404');
         }
 
 
