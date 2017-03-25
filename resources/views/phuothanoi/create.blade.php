@@ -77,7 +77,7 @@
         </div>
         <div class="col-sm-2">
 <!--        {{ Form::select('don_vi', ['Lựa chọn tour', 'Thám hiểm', 'Mạo hiểm', 'Chụp hình'], null, ['class' => 'field']) }}-->
-            {{ Form::select('don_vi', ['Ngàn', 'Triệu'], 0, ['class' => 'form-control']) }}
+            {{ Form::select('don_vi', ['Lựa chọn đơn vị', 'Ngàn', 'Triệu'], 1, ['class' => 'form-control']) }}
         </div>
     </div>
 
@@ -98,15 +98,15 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('type', 'Kiểu tour:', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-4">
-            {{ Form::select('type', ['Lựa chọn tour', 'Thám hiểm', 'Mạo hiểm', 'Chụp hình'], null, ['class' => 'form-control']) }}
+        {!! Form::label('kieu_tour', 'Kiểu tour:', ['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-8">
+            {{ Form::select('don_vi', ['Lựa chọn tour', 'Thám hiểm', 'Mạo hiểm', 'Chụp hình'], null, ['class' => 'form-control']) }}
         </div>
     </div>
 
     <div class="form-group">
         {!! Form::label('nguoi_dan', 'Người dẫn:', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-4">
+        <div class="col-sm-10">
         {!! Form::select('nguoi_dan', $hdvs, null, array('class' => 'form-control')) !!}
         </div>
     </div>

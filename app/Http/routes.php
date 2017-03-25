@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('duan', 'DuanController');
 
     Route::resource('tour', 'TourController');
-    
+
     Route::resource('diadanh', 'DiadanhController');
 
     Route::resource('yeucaunha', 'YeucaunhaController');
@@ -131,5 +131,5 @@ Route::group(['middleware' => ['web']], function () {
     
     Route::get('/xem-dia-danh/{id}', 'DiadanhController@xemdiadanh');
     Route::get('/xem-dia-danh', 'DiadanhController@xemtatcadiadanh');
-    Route::get('/follow-dia-danh/{id}', 'DiadanhController@followdiadanh');
+    Route::post('/follow-dia-danh/{id}', 'DiadanhController@followdiadanh');
 });

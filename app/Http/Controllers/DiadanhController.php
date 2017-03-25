@@ -12,6 +12,7 @@ use DB;
 use Session;
 use App\Followdiadanh;
 use Auth;
+use Mail;
 
 class DiadanhController extends Controller
 {
@@ -39,8 +40,11 @@ class DiadanhController extends Controller
     public function followdiadanh($id){
         $diadanh = Diadanh::findOrFail($id);
         
-        if($diadanh === null){
-            return view('errors.404');
+        if (is_null($diadanh))
+        {
+            $returnArr['code'] = 0;
+            $returnArr['message'] = "Notfound";
+            return json_encode($returnArr);
         }
         
         // add user to follow table
@@ -55,9 +59,23 @@ class DiadanhController extends Controller
             $followDiaDanh->updated_at = $today;
 
             $followDiaDanh->save();
+            $returnArr['code'] = 1;
+            $returnArr['message'] = "Success";
+            // send email to Quan
+            $user = \Auth::user();
+            
+            Mail::send('emails.followTour', [], function($message) use ($user) {
+                $message->from('admin@chodatso.com', 'chodatso.com');
+                $message->to("tran.thanh.tuan269@gmail.com")->subject('Thông báo từ chodatso.com');
+            });
+            
+            return json_encode($returnArr);
+            // show alert to user
         }
-        // send email to Quan
-        // show alert to user
+        
+        $returnArr['code'] = 2;
+        $returnArr['message'] = "Unsuccess";
+        return json_encode($returnArr);
     }
 
     /**

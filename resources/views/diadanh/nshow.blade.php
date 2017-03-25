@@ -110,8 +110,9 @@ $(document).ready(function(){
         });
 
         request.done(function( msg ) {
-            console.log("Success!");
-            
+            if(msg.code){
+                
+            }
         });
 
         request.fail(function( jqXHR, textStatus ) {
