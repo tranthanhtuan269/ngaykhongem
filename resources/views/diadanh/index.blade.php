@@ -44,7 +44,7 @@
                                 <div class="big-field"><?php echo $diadanh->sub_mo_ta; ?></div>
 
                                 <div>
-                                <a class="btn btn-primary btn-xed" href="{{URL::to('/')}}/{{ $diadanh->id }}">Xem</a>
+                                <a class="btn btn-primary btn-xed" href="{{URL::to('/')}}/diadanh/{{ $diadanh->id }}">Xem</a>
                                 {{ link_to_route('diadanh.edit', 'Sửa', array($diadanh->id), array('class' => 'btn btn-info btn-xed')) }}
                                 {{ Form::open(array('method' => 'DELETE', 'route' => array('diadanh.destroy', $diadanh->id), 'class'=>'delete_btn'))}}                       
                                 {{ Form::submit('Delete', array('class' => 'btn btn-danger btn-xed')) }}

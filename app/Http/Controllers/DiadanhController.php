@@ -31,10 +31,21 @@ class DiadanhController extends Controller
     
     public function xemtatcadiadanh()
     {
-        $diadanhs = DB::table('diadanh')
-                    ->paginate(8);
-        
-        return view('diadanh.xemtatca')->withdiadanhs($diadanhs);
+        if(Auth::user()){
+            $diadanhs = DB::table('diadanh')
+                        ->paginate(8);
+            $follows = DB::table('followdiadanh')
+                        ->where('user_id', '=', Auth::user()->id)
+                        ->get();
+            $arr = [];
+            foreach($follows as $follow){
+                $arr[] = $follow->diadanh_id;
+            }
+        }else{
+           $diadanhs = DB::table('diadanh')->paginate(8);
+           $arr = [];
+        }
+        return view('diadanh.xemtatca')->withdiadanhs($diadanhs)->witharrayfollow($arr);
     }
     
     public function followdiadanh($id){
@@ -49,6 +60,17 @@ class DiadanhController extends Controller
         
         // add user to follow table
         if(Auth::user()){
+            
+            $checkfollow = DB::table('followdiadanh')
+                    ->where('user_id', Auth::user()->id)
+                    ->where('diadanh_id', $id)
+                    ->get();
+            if($checkfollow){
+                $returnArr['code'] = 1;
+                $returnArr['message'] = "Success";
+                return json_encode($returnArr);
+            }
+            
             $user_id = Auth::user()->id;
             $today = date("Y-m-d H:i:s"); 
             $followDiaDanh = new Followdiadanh();
@@ -66,11 +88,15 @@ class DiadanhController extends Controller
             
             Mail::send('emails.followTour', [], function($message) use ($user) {
                 $message->from('admin@chodatso.com', 'chodatso.com');
-                $message->to("tran.thanh.tuan269@gmail.com")->subject('Thông báo từ chodatso.com');
+                $message->to(env('MAIL_ADMIN', 'tran.thanh.tuan269@gmail.com'))->subject('Thông báo từ '.env('SITE', 'chodatso.com'));
             });
             
             return json_encode($returnArr);
             // show alert to user
+        }else{
+            $returnArr['code'] = 3;
+            $returnArr['message'] = "Unsuccess";
+            return json_encode($returnArr);
         }
         
         $returnArr['code'] = 2;

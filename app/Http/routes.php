@@ -121,7 +121,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/thanh-toan-thanh-cong', 'ActionController@thanhtoanthanhcong');
     Route::get('/success', 'ActionController@success');
 
-    Route::get('/xem-tour', 'PhuotHaNoiController@xemtour');
+    Route::get('/xem-tour/{id}', 'PhuotHaNoiController@xemtour');
+    Route::get('/xem-tour', 'PhuotHaNoiController@xemtatcatour');
     Route::get('/xem-tour-thang', 'PhuotHaNoiController@xemtourthang');
     Route::get('/huong-dan-vien', 'PhuotHaNoiController@huongdanvien');
     Route::get('/gioi-thieu', 'PhuotHaNoiController@gioithieu');
@@ -132,4 +133,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/xem-dia-danh/{id}', 'DiadanhController@xemdiadanh');
     Route::get('/xem-dia-danh', 'DiadanhController@xemtatcadiadanh');
     Route::post('/follow-dia-danh/{id}', 'DiadanhController@followdiadanh');
+    Route::post('/dat-tour/{id}', 'PhuotHaNoiController@dattour');
+    Route::post('ajaximage', function(){
+        $file = Request::file('file');
+        var_dump($file);die;
+        $destinationPath = public_path().'/images/';
+        $filename = $file->getClientOriginalName();
+        $file->move($destinationPath, $filename);
+        echo url().'/images/'.$filename;
+    });
 });

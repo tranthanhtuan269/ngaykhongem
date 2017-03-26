@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use DB;
 use Auth;
+use App\Tour;
+use App\Dattour;
+use Mail;
 
 class PhuotHaNoiController extends Controller
 {
@@ -27,10 +30,16 @@ class PhuotHaNoiController extends Controller
         
     }
 
-    public function xemtour(){
+    public function xemtour($id){
+        $tour = DB::table('tour')->where('id', '=', $id)->first();
+        //var_dump($tours);die;
+        return view('phuothanoi.xemtour')->withtour($tour);
+    }
+    
+    public function xemtatcatour(){
         $tours = DB::table('tour')->orderBy('ngay_khoi_hanh', 'desc')->paginate(12);
         //var_dump($tours);die;
-        return view('phuothanoi.xemtour')->withtours($tours);
+        return view('phuothanoi.xemtatcatour')->withtours($tours);
     }
     
     public function xemtourthang(){
@@ -83,5 +92,60 @@ class PhuotHaNoiController extends Controller
     public function setuppost(Request $request)
     {
         
+    }
+    
+    public function dattour($id){
+        $tour = Tour::findOrFail($id);
+//        var_dump($tour);die;
+        if (is_null($tour))
+        {
+            $returnArr['code'] = 0;
+            $returnArr['message'] = "Notfound";
+            return json_encode($returnArr);
+        }
+        
+        // add user to follow table
+        if(Auth::user()){
+            
+            $checkdattour = DB::table('dattour')
+                    ->where('user_id', Auth::user()->id)
+                    ->where('tour_id', $id)
+                    ->get();
+            if($checkdattour){
+                $returnArr['code'] = 1;
+                $returnArr['message'] = "Success";
+                return json_encode($returnArr);
+            }
+            
+            $user_id = Auth::user()->id;
+            $today = date("Y-m-d H:i:s"); 
+            $datTour = new Dattour();
+
+            $datTour->user_id = $user_id;
+            $datTour->tour_id = $id;
+            $datTour->created_at = $today;
+
+            $datTour->save();
+            $returnArr['code'] = 1;
+            $returnArr['message'] = "Success";
+            // send email to Quan
+            $user = \Auth::user();
+            
+            Mail::send('emails.dattour', [], function($message) use ($user) {
+                $message->from('admin@chodatso.com', env('SITE', 'chodatso.com'));
+                $message->to(env('MAIL_ADMIN', 'tran.thanh.tuan269@gmail.com'))->subject('Thông báo từ '.env('SITE', 'chodatso.com'));
+            });
+            
+            return json_encode($returnArr);
+            // show alert to user
+        }else{
+            $returnArr['code'] = 3;
+            $returnArr['message'] = "Unsuccess";
+            return json_encode($returnArr);
+        }
+        
+        $returnArr['code'] = 2;
+        $returnArr['message'] = "Unsuccess";
+        return json_encode($returnArr);
     }
 }

@@ -11,6 +11,7 @@ use App\User;
 use DB;
 use Carbon\Carbon;
 use Session;
+use App\Tour;
 
 class HomeController extends Controller
 {
@@ -383,8 +384,12 @@ class HomeController extends Controller
     }
 
     public function welcome(){
+//        var_dump(date('m')); die;
         $diadanhs = DB::table('diadanh')->paginate(4);
-        return view('welcome', compact(['diadanhs']));
+        $trangchu = DB::table('textout')->where('name', '=', 'trang_chu')->first();
+        $tourinmonth = Tour::whereRaw('MONTH(ngay_khoi_hanh) = MONTH(NOW())')->take(4)->get();
+        //var_dump($tourinmonth);die;
+        return view('welcome', compact(['diadanhs','trangchu','tourinmonth']));
     }
     
     public function testnew(){

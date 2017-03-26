@@ -91,7 +91,26 @@ $(document).ready(function(){
   
   $('.summernote').summernote({
     height:300,
+    onImageUpload: function(files) {
+        sendFile(files[0]);
+    }
   });
+  
+  function sendFile(file) {
+        var data = new FormData();
+        data.append("file", file);//You can append as many data as you want. Check mozilla docs for this
+        $.ajax({
+            data: data,
+            type: "POST",
+            url: '{{ URL::to('/') }}/ajaximage',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(url) {
+                $("#summernote").summernote("insertImage", url);
+            }
+        });
+    }
 });
 </script> 
 
