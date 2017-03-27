@@ -102,7 +102,7 @@
                                     $images = explode( ';', $temp );
                             ?>
                             <div class="col-md-3">
-                                <div class="image-tour"><a href="{{ url('/') }}/xem-tour/{{$tour->id}}"><img src="{{ url('/') }}/images/{{$images[0]}}" width="255" height="193" class="thumbnail"></a></div>
+                                <div class="image-tour"><a href="{{ url('/') }}/xem-tour/{{$tour->id}}"><img src="{{ url('/') }}/images/{{$images[0]}}" width="100%" height="193" class="thumbnail"></a></div>
                                 <div class="name-tour">{{$tour->ten_tour}}</div>
                                 <div class="sub-desc-tour">{{substr(date_format(date_create($tour->ngay_khoi_hanh),"d/m/Y H:i:s"),0,10)}}</span> - <span class="date-start">{{substr(date_format(date_create($tour->ngay_ket_thuc),"d/m/Y H:i:s"),0,10)}}</div>
                             </div>

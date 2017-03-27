@@ -32,12 +32,16 @@ class PhuotHaNoiController extends Controller
 
     public function xemtour($id){
         $tour = DB::table('tour')->where('id', '=', $id)->first();
+        if(Auth::user()){
         $tourdats = DB::table('dattour')
                     ->where('user_id', '=', Auth::user()->id)
                     ->get();
         $arr = [];
         foreach($tourdats as $tourdat){
             $arr[] = $tourdat->tour_id;
+        }
+        }else{
+           $arr = [];
         }
         return view('phuothanoi.xemtour')->withtour($tour)->withtourdats($arr);
     }
