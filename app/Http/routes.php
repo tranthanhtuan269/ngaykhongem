@@ -134,12 +134,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/xem-dia-danh', 'DiadanhController@xemtatcadiadanh');
     Route::post('/follow-dia-danh/{id}', 'DiadanhController@followdiadanh');
     Route::post('/dat-tour/{id}', 'PhuotHaNoiController@dattour');
-    Route::post('ajaximage', function(){
-        $file = Request::file('file');
-        var_dump($file);die;
-        $destinationPath = public_path().'/images/';
-        $filename = $file->getClientOriginalName();
-        $file->move($destinationPath, $filename);
-        echo url().'/images/'.$filename;
-    });
+    Route::post('/ajaximage', 'DiadanhController@postImage');
+//    Route::post('/ajaximage', function(){
+//        $file = Request::file('file');
+////        var_dump($file);die;
+//        $destinationPath = public_path().'/images/';
+//        $filename = $file->getClientOriginalName();
+//        $file->move($destinationPath, $filename);
+//        echo url().'/images/'.$filename;
+//    });
 });

@@ -113,6 +113,16 @@ class DiadanhController extends Controller
     {
         return view('diadanh.create');
     }
+    
+    public function postImage(\Illuminate\Support\Facades\Request $request){
+        $file = $request::file('file');
+        $filename = $file->getClientOriginalName();
+        $extension = $file->getClientOriginalExtension();
+        $picture = date('His').$filename;
+        $destinationPath = base_path() . '/public/images';
+        $file->move($destinationPath, $picture);
+        echo url('/').'/images/'.$picture;
+    }
 
     /**
      * Store a newly created resource in storage.

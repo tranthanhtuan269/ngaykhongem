@@ -81,6 +81,13 @@
                         <li><a href="{{ url('/register') }}">Đăng Ký</a></li>
                     @elseif(Auth::user()->id == 11262 || Auth::user()->id == 1 )
                         <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý Tour <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('/tour/') }}">Danh sách Tour</a></li>
+                                <li><a href="{{ url('/tour/create') }}">Tạo mới Tour</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý Địa Danh <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="{{ url('/diadanh/') }}">Danh sách Địa Danh</a></li>

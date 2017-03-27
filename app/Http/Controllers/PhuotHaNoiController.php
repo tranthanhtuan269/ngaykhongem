@@ -32,14 +32,27 @@ class PhuotHaNoiController extends Controller
 
     public function xemtour($id){
         $tour = DB::table('tour')->where('id', '=', $id)->first();
-        //var_dump($tours);die;
-        return view('phuothanoi.xemtour')->withtour($tour);
+        $tourdats = DB::table('dattour')
+                    ->where('user_id', '=', Auth::user()->id)
+                    ->get();
+        $arr = [];
+        foreach($tourdats as $tourdat){
+            $arr[] = $tourdat->tour_id;
+        }
+        return view('phuothanoi.xemtour')->withtour($tour)->withtourdats($arr);
     }
     
     public function xemtatcatour(){
         $tours = DB::table('tour')->orderBy('ngay_khoi_hanh', 'desc')->paginate(12);
+        $tourdats = DB::table('dattour')
+                    ->where('user_id', '=', Auth::user()->id)
+                    ->get();
+        $arr = [];
+        foreach($tourdats as $tour){
+            $arr[] = $tour->tour_id;
+        }
         //var_dump($tours);die;
-        return view('phuothanoi.xemtatcatour')->withtours($tours);
+        return view('phuothanoi.xemtatcatour')->withtours($tours)->withtourdats($arr);
     }
     
     public function xemtourthang(){

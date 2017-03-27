@@ -24,8 +24,7 @@ class TourController extends Controller
         $tours = DB::table('tour')
                     ->orderBy('ngay_khoi_hanh', 'desc')
                     ->paginate(8);
-        
-        return view('phuothanoi.xemtour')->withtours($tours);
+        return view('tour.index')->withtours($tours);
     }
 
     /**

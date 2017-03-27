@@ -91,23 +91,28 @@ $(document).ready(function(){
   
   $('.summernote').summernote({
     height:300,
-    onImageUpload: function(files) {
-        sendFile(files[0]);
+    callbacks: {
+        onImageUpload : function(files, editor, welEditable) {
+             for(var i = files.length - 1; i >= 0; i--) {
+                     sendFile(files[i], this);
+            }
+        }
     }
   });
-  
-  function sendFile(file) {
-        var data = new FormData();
-        data.append("file", file);//You can append as many data as you want. Check mozilla docs for this
+    
+    function sendFile(file, el) {
+        var form_data = new FormData();
+        form_data.append("_token","{{ csrf_token() }}");
+        form_data.append('file', file);
         $.ajax({
-            data: data,
+            data: form_data,
             type: "POST",
             url: '{{ URL::to('/') }}/ajaximage',
             cache: false,
             contentType: false,
             processData: false,
             success: function(url) {
-                $("#summernote").summernote("insertImage", url);
+                $(el).summernote('editor.insertImage', url);
             }
         });
     }
