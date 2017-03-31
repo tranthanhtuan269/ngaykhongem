@@ -31,6 +31,14 @@ class ActionController extends Controller
     {
         
     }
+    
+    public function loginfacebook(){
+        return view('actions.login');
+    }
+    
+    public function callbackfacebook(){
+        return view('actions.fb-callback');
+    }
 
     public function thanhtoanbaokim(){
         return view('actions.thanhtoanbaokim');

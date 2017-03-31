@@ -1,5 +1,32 @@
 @extends('layouts.app')
 
+@section('fb_url')
+    {{URL::to('/')}}/xem-tour/{{$tour->id}}
+@endsection
+
+@section('fb_image')
+    <?php
+    if(count($tour) > 0) {
+        $temp = substr($tour->images,0,-1);
+        $images = explode( ';', $temp );
+    }
+    echo URL::to('/') . '/images/' . $images[0];
+    ?>
+@endsection
+
+@section('fb_title')
+    <?php
+        if(count($tour) > 0) {
+            echo "chodatso.com";
+        }
+    ?>
+@endsection
+
+@section('fb_description')
+
+@endsection
+
+
 @section('content')
 <div class="panel panel-default main-content xem-tour">
     <div class="panel-heading">
@@ -49,7 +76,9 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-12 col-sm-12">
                             <button class="btn btn-primary" id="dat-tour" data-accept-id="{{ $tour->id }}">Đặt tour</button>
+                            <!-- Your share button code -->
                         </div>
+                        <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
                     </div>
                     @endif
                 </div>

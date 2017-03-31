@@ -3,8 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/code/app/Http/Controllers/UserAttackController.php</file>
-            <file>file:/E:/code/app/Http/routes.php</file>
+            <file>file:/var/www/ngaykhongem/resources/views/tour/show.blade.php</file>
+            <file>file:/var/www/ngaykhongem/app/Http/Controllers/HdvController.php</file>
+            <file>file:/var/www/ngaykhongem/resources/views/layouts/app.blade.php</file>
+            <file>file:/var/www/ngaykhongem/app/Http/routes.php</file>
+            <file>file:/var/www/ngaykhongem/app/Http/Controllers/ActionController.php</file>
+            <file>file:/var/www/ngaykhongem/index.php</file>
+            <file>file:/var/www/ngaykhongem/resources/views/actions/fb-callback.blade.php</file>
+            <file>file:/var/www/ngaykhongem/resources/views/auth/login.blade.php</file>
         </group>
     </open-files>
 </project-private>

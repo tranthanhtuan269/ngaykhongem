@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta property="fb:app_id"         content="317838401932364" />
+    <meta property="og:title"         content="chodatso.com" />
+    <meta property="og:description"   content="Cho dat so " />
+    <meta property="og:image"         content="@yield('fb_image')" />
+    <meta property="og:url"           content="@yield('fb_url')" />
+    <meta property="og:type"          content="website" />
+    
     <title>hanoiphuot.com</title>
 
     <!-- Fonts -->
@@ -13,7 +20,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{ url('/') }}/css/pickmeup.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/jquery.toast.css">
     <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/app.css">
@@ -39,6 +45,14 @@
     </script>
 </head>
 <body id="app-layout">
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=317838401932364";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -80,6 +94,13 @@
                         <li><a href="{{ url('/login') }}">Đăng Nhập</a></li>
                         <li><a href="{{ url('/register') }}">Đăng Ký</a></li>
                     @elseif(Auth::user()->id == 11262 || Auth::user()->id == 1 )
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý HDV <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url('/hdv/') }}">Danh sách HDV</a></li>
+                                <li><a href="{{ url('/hdv/create') }}">Tạo mới HDV</a></li>
+                            </ul>
+                        </li>
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý Tour <span class="caret"></span></a>
                             <ul class="dropdown-menu">

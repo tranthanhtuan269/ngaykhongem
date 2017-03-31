@@ -16,6 +16,9 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/facebook/login', 'ActionController@loginfacebook');
+Route::get('/facebook/callback', 'ActionController@callbackfacebook');
+
 Route::get('/sitemap.xml', function(){
     
 });
@@ -57,6 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('duan', 'DuanController');
 
     Route::resource('tour', 'TourController');
+    
+    Route::resource('hdv', 'HdvController');
 
     Route::resource('diadanh', 'DiadanhController');
 

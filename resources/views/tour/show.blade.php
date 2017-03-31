@@ -49,6 +49,7 @@
                     <div class="row">
                         <div class="col-xs-12 col-md-12 col-sm-12">
                             <button class="btn btn-primary" id="dat-tour" data-accept-id="{{ $tour->id }}">Đặt tour</button>
+                            <div class="fb-share-button" data-href="http://chodatso.com/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchodatso.com%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
                         </div>
                     </div>
                     @endif
