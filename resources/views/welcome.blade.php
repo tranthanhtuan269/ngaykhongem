@@ -87,7 +87,8 @@
         </div>
     </div>
     <?php } ?>
-    
+    <?php 
+        if(sizeof($tourinmonth) > 0){ ?>
     <div class="row sub-content">
         <div class="col-md-12">
             <div class="panel panel-primary">
@@ -109,29 +110,8 @@
                         <?php 
                                 }
                             }else{ ?>
-                        <div class="col-md-3">
-                            <div class="image-tour"><img src="{{ url('/') }}/images/tam-coc.jpg" width="100%" class="thumbnail"></div>
-                            <div class="name-tour">Tam Cốc - Bích Động</div>
-                            <div class="sub-desc-tour">20/3/2016 - 22/3/2016</div>
-                            <div class="desc-tour">Tam Cốc - Bích Động được ví như “Hạ Long trên cạn" của Ninh Bình. Tam Cốc có nghĩa là ba hang. Đó là hang Cả, hang Hai và hang Ba. Cả ba hang đều được tạo thành bởi dòng sông Ngô Đồng đâm xuyên qua núi.</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="image-tour"><img src="{{ url('/') }}/images/dau-go.jpg" width="100%" class="thumbnail"></div>
-                            <div class="name-tour">Hang Đầu Gỗ</div>
-                            <div class="sub-desc-tour">24/3/2016 - 26/3/2016</div>
-                            <div class="desc-tour">Hang Đầu Gỗ nằm trên đảo Đầu Gỗ thuộc vịnh Hạ Long, tỉnh Quảng Ninh. Cuốn Kỳ quan thế giới của Pháp xuất bản năm 1938 đã gọi hang Đầu Gỗ là Grotte des merveilles (động của các kỳ quan).</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="image-tour"><img src="{{ url('/') }}/images/thien-cung.jpg" width="100%" class="thumbnail"></div>
-                            <div class="name-tour">Động Thiên Cung</div>
-                            <div class="sub-desc-tour">26/3/2016 - 28/3/2016</div>
-                            <div class="desc-tour">Động Thiên Cung ở phía bắc đảo Đầu Gỗ. Cổng động hẹp, nhưng khi bước vào trong, bạn sẽ ngỡ ngàng với độ rộng của lòng hang.</div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="image-tour"><img src="{{ url('/') }}/images/thach-dong.jpg" width="100%" class="thumbnail"></div>
-                            <div class="name-tour">Thạch Động</div>
-                            <div class="sub-desc-tour">28/3/2016 - 30/3/2016</div>
-                            <div class="desc-tour">Thạch Động có hai cửa hang chính. Một cửa hướng thị xã Hà Tiên, cửa còn lại hướng về phía cánh đồng Mỹ Đức. Trong hang có chùa Tiên Sơn xây dựng bằng gỗ từ năm 1790. Năm 2003, chùa đã được tu sửa lại.</div>
+                        <div class="col-md-12">
+                            <div class="desc-tour">Không có tour nào được tìm thấy trong tháng này!</div>
                         </div>
                         <?php } ?>
                     </div>
@@ -143,7 +123,7 @@
             </div>
         </div>
     </div>
-    
+    <?php } ?>
     <div class="row sub-content">
         <div class="col-md-12">
             <div class="panel panel-primary">

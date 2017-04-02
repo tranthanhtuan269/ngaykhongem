@@ -10,22 +10,6 @@
 
 @section('content')
 
-<?php 
-    require_once __DIR__ . '/Facebook/autoload.php';
-
-    session_start();
-    $fb = new Facebook\Facebook([
-      'app_id' => '317838401932364', // Replace {app-id} with your app id
-      'app_secret' => '2301dd0b517e64b0d340298b5ef300a1',
-      'default_graph_version' => 'v2.2',
-      ]);
-
-    $helper = $fb->getRedirectLoginHelper();
-
-    $permissions = ['email']; // Optional permissions
-    $loginUrl = $helper->getLoginUrl(url('/facebook/callback'), $permissions);
-?>
-
 <div class="panel panel-default main-content">
     <div class="panel-heading">
         <h3 class="panel-title">Đăng nhập</h3>
@@ -76,9 +60,7 @@
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">
                         <i class="fa fa-btn fa-sign-in"></i> Đăng nhập
-                    </button>
-                    
-                    <a href="<?php echo htmlspecialchars($loginUrl); ?>">Log in with Facebook!</a>;
+                    </button> 
 
                     <a class="btn btn-link" href="{{ url('/password/reset') }}">Quên mật khẩu?</a>
                 </div>

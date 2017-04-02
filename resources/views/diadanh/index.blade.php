@@ -59,7 +59,7 @@
 
             </table>
 
-            <div class="row text-center">
+            <div class="text-center">
                 {{ $diadanhs->links() }}
             </div>
         @else

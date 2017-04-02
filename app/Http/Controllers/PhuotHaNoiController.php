@@ -67,19 +67,19 @@ class PhuotHaNoiController extends Controller
     public function tourthamhiem(){
         $tours = DB::table('tour')->where('type','=',1)->orderBy('ngay_khoi_hanh', 'desc')->paginate(12);
         //var_dump($tours);die;
-        return view('phuothanoi.xemtour')->withtours($tours);
+        return view('phuothanoi.xemtours')->withtours($tours);
     }
     
     public function tourmaohiem(){
         $tours = DB::table('tour')->where('type','=',2)->orderBy('ngay_khoi_hanh', 'desc')->paginate(12);
         //var_dump($tours);die;
-        return view('phuothanoi.xemtour')->withtours($tours);
+        return view('phuothanoi.xemtours')->withtours($tours);
     }
     
     public function tourchuphinh(){
         $tours = DB::table('tour')->where('type','=',3)->orderBy('ngay_khoi_hanh', 'desc')->paginate(12);
         //var_dump($tours);die;
-        return view('phuothanoi.xemtour')->withtours($tours);
+        return view('phuothanoi.xemtours')->withtours($tours);
     }
     
     public function huongdanvien(){

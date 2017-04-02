@@ -1,31 +1,25 @@
 @extends('layouts.app')
 
-@section('fb_url')
-    {{URL::to('/')}}/xem-tour/{{$tour->id}}
-@endsection
-
-@section('fb_image')
-    <?php
+<?php
+    $fb_image = "";
+    $fb_title = "phuothanoi.com";
+    $fb_description = "phuothanoi.com";
+    $fb_url = "http://chodatso.com";
+            
     if(count($tour) > 0) {
         $temp = substr($tour->images,0,-1);
         $images = explode( ';', $temp );
+        $fb_image =  URL::to('/') . '/images/' . $images[0];
+        $fb_title = $tour->ten_tour;
+        $fb_description = $tour->ten_tour;
+        $fb_url = URL::to('/') .'/xem-tour/'. $tour->id;
     }
-    echo URL::to('/') . '/images/' . $images[0];
     ?>
-@endsection
 
-@section('fb_title')
-    <?php
-        if(count($tour) > 0) {
-            echo "chodatso.com";
-        }
-    ?>
-@endsection
-
-@section('fb_description')
-
-@endsection
-
+@section('fb_image',$fb_image)
+@section('fb_title',$fb_title)
+@section('fb_description',$fb_description)
+@section('fb_url',$fb_url)
 
 @section('content')
 <div class="panel panel-default main-content xem-tour">
@@ -78,9 +72,9 @@
                             <button class="btn btn-primary" id="dat-tour" data-accept-id="{{ $tour->id }}">Đặt tour</button>
                             <!-- Your share button code -->
                         </div>
-                        <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
                     </div>
                     @endif
+                    <div class="fb-share-button" data-href="http://chodatso.com" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fchodatso.com%2F&amp;src=sdkpreparse">Chia sẻ</a></div>
                 </div>
             </div>
         </div>

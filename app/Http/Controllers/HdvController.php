@@ -46,20 +46,17 @@ class HdvController extends Controller
         $picture = '';
         $allPic = '';
         if ($request->hasFile('images1')) {
-            $files = $request->file('images1');
-            foreach($files as $file){
-                $filename = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension();
-                $picture = date('His').$filename;
-                $allPic .= $picture . ';';
-                $destinationPath = base_path() . '/public/images';
-                $file->move($destinationPath, $picture);
-            }
+            $file = $request->file('images1');
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $picture = date('His').$filename;
+            $destinationPath = base_path() . '/public/images';
+            $file->move($destinationPath, $picture);
         }
         // add images to database
         $input = $request->all();
         unset($input['images1']);
-        $input['avatar'] = $allPic;
+        $input['avatar'] = $picture;
         $input['type'] = 1;
         $input['password'] = '123456';
         $user = User::create($input);
@@ -118,17 +115,14 @@ class HdvController extends Controller
         $picture = '';
         $allPic = '';
         if ($request->hasFile('images1')) {
-            $files = $request->file('images1');
-            foreach($files as $file){
-                $filename = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension();
-                $picture = date('His').$filename;
-                $allPic .= $picture . ';';
-                $destinationPath = base_path() . '/public/images';
-                $file->move($destinationPath, $picture);
-            }
+            $file = $request->file('images1');
+            $filename = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $picture = date('His').$filename;
+            $destinationPath = base_path() . '/public/images';
+            $file->move($destinationPath, $picture);
             unset($input['images1']);
-            $input['avatar'] = $allPic;
+            $input['avatar'] = $picture;
         }
 
         $hdv = User::find($id);

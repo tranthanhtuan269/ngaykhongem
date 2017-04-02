@@ -114,3 +114,8 @@
 .navbar-default .navbar-text{
     color: #fff;
 }*/
+
+.table-responsive {
+    overflow-x: hidden;
+    min-height: .01%;
+}

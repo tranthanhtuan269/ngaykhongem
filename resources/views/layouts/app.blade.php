@@ -5,17 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta property="fb:app_id"         content="317838401932364" />
-    <meta property="og:title"         content="chodatso.com" />
-    <meta property="og:description"   content="Cho dat so " />
-    <meta property="og:image"         content="@yield('fb_image')" />
-    <meta property="og:url"           content="@yield('fb_url')" />
-    <meta property="og:type"          content="website" />
+    <meta property="fb:app_id" content="317838401932364" />
+    <meta property="og:title" content="@yield('fb_title')" />
+    <meta property="og:description" content="@yield('fb_description')" />
+    <meta property="og:image" content="@yield('fb_image')" />
+    <meta property="og:url" content="@yield('fb_url')" />
     
     <title>hanoiphuot.com</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
@@ -91,6 +89,8 @@
                     <li><a href="{{ url('/gioi-thieu') }}">Giới Thiệu</a></li>
                     <!-- Authentication Links -->
                     @if (Auth::guest())
+                        <li><a href="{{ url('/huong-dan-vien') }}">Hướng Dẫn Viên</a></li>
+                        <li><a href="{{ url('/xem-dia-danh') }}">Xem Địa Danh</a></li>
                         <li><a href="{{ url('/login') }}">Đăng Nhập</a></li>
                         <li><a href="{{ url('/register') }}">Đăng Ký</a></li>
                     @elseif(Auth::user()->id == 11262 || Auth::user()->id == 1 )
@@ -139,7 +139,10 @@
             </div>
         </div>
     </nav>
-    <div class="container"><div class="row"><div class="col-xs-12 col-md-12 col-sm-12">@yield('content')</div></div></div>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-12 col-sm-12">@yield('content')</div>
+        </div>
+    </div>
 </body>
 </html>
