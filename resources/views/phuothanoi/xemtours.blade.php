@@ -19,10 +19,10 @@
                 
         ?>
             <div class="col-xs-12 col-md-12 col-sm-12 product">
-                <div class="col-xs-4 col-md-4 col-sm-12 image-prod">
+                <div class="col-xs-12 col-md-4 col-sm-12 image-prod">
                     <a href="{{URL::to('/')}}/xem-tour/{{ $tour->id }}"><img src="{{ URL::to('/') }}/images/{{ $images[0] }}" class="img-thumbnail" alt="Responsive image"></a>
                 </div>
-                <div class="col-xs-8 col-md-8 col-sm-12 detail-prod">
+                <div class="col-xs-12 col-md-8 col-sm-12 detail-prod">
                     <div class="row">
                         <div class="col-xs-12 col-md-12 col-sm-12">
                             <span class="name-tour"> {{ $tour->ten_tour }} </span>

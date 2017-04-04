@@ -131,12 +131,14 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/xem-tour-thang', 'PhuotHaNoiController@xemtourthang');
     Route::get('/huong-dan-vien', 'PhuotHaNoiController@huongdanvien');
     Route::get('/gioi-thieu', 'PhuotHaNoiController@gioithieu');
-    Route::get('/tour-tham-hiem', 'PhuotHaNoiController@tourthamhiem');
-    Route::get('/tour-mao-hiem', 'PhuotHaNoiController@tourmaohiem');
-    Route::get('/tour-chup-hinh', 'PhuotHaNoiController@tourchuphinh');
+    Route::get('/tour-leo-nui', 'PhuotHaNoiController@tourleonui');
+    Route::get('/tour-di-bo', 'PhuotHaNoiController@tourdibo');
+    Route::get('/tour-bien-dao', 'PhuotHaNoiController@tourbiendao');
+    Route::get('/tour-cam-trai', 'PhuotHaNoiController@tourcamtrai');
     
     Route::get('/xem-dia-danh/{id}', 'DiadanhController@xemdiadanh');
     Route::get('/xem-dia-danh', 'DiadanhController@xemtatcadiadanh');
+    
     Route::post('/follow-dia-danh/{id}', 'DiadanhController@followdiadanh');
     Route::post('/dat-tour/{id}', 'PhuotHaNoiController@dattour');
     Route::post('/ajaximage', 'DiadanhController@postImage');

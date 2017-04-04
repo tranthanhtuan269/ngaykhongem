@@ -73,7 +73,6 @@
             </div>
         </div>
     </div>
-    <?php if($trangchu->textout != ''){ ?>
     <div class="row sub-content">
         <div class="col-md-12">
             <div class="panel panel-primary">
@@ -86,7 +85,6 @@
             </div>
         </div>
     </div>
-    <?php } ?>
     <?php 
         if(sizeof($tourinmonth) > 0){ ?>
     <div class="row sub-content">

@@ -18,7 +18,7 @@
         ?>
             <div class="col-xs-12 col-md-12 col-sm-12 product">
                 <div class="col-xs-3 col-md-3 col-sm-12 image-prod">
-                    <a href="{{URL::to('/')}}/{{ $user->id }}"><img src="{{ URL::to('/') }}/images/{{ $user->avatar }}" class="img-thumbnail" alt="Responsive image"></a>
+                    <img src="{{ URL::to('/') }}/images/{{ $user->avatar }}" class="img-thumbnail" alt="Responsive image">
                 </div>
                 <div class="col-xs-9 col-md-9 col-sm-12 detail-prod">
                     <div class="row">

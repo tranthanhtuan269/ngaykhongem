@@ -11,8 +11,8 @@
     <meta property="og:image" content="@yield('fb_image')" />
     <meta property="og:url" content="@yield('fb_url')" />
     
-    <title>hanoiphuot.com</title>
-
+    <title>Moc backpacking</title>
+    <link rel="shortcut icon" type="image/png" href="{{ url('/') }}/images/logo.jpg">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
@@ -65,7 +65,7 @@
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ url('/') }}/images/logo.jpg" alt="" width="50" class="logo-img">
-                    <div class="company-name">hanoiphuot.com</div>
+                    <div class="company-name">Moc backpacking</div>
                 </a>
             </div>
 
@@ -77,23 +77,24 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right top-bar">
-                    <li><a href="{{ url('/') }}">Trang Chủ</a></li>
+                    <li><a href="{{ url('/') }}">Trang chủ</a></li>
                     <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Xem Tour <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tour của chúng tôi <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ url('/tour-tham-hiem') }}">Tour Thám Hiểm</a></li>
-                            <li><a href="{{ url('/tour-mao-hiem') }}">Tour Mạo Hiểm</a></li>
-                            <li><a href="{{ url('/tour-chup-hinh') }}">Tour Chụp Hình</a></li>
+                            <li><a href="{{ url('/tour-leo-nui') }}">Tour trải nghiệm leo núi</a></li>
+                            <li><a href="{{ url('/tour-di-bo') }}">Tour đi bộ qua các bản làng</a></li>
+                            <li><a href="{{ url('/tour-bien-dao') }}">Tour biển đảo</a></li>
+                            <li><a href="{{ url('/tour-cam-trai') }}">Tour cắm trại</a></li>
                         </ul>
                     </li>
-                    <li><a href="{{ url('/gioi-thieu') }}">Giới Thiệu</a></li>
+                    <li><a href="{{ url('/gioi-thieu') }}">Giới thiệu</a></li>
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/huong-dan-vien') }}">Hướng Dẫn Viên</a></li>
-                        <li><a href="{{ url('/xem-dia-danh') }}">Xem Địa Danh</a></li>
-                        <li><a href="{{ url('/login') }}">Đăng Nhập</a></li>
-                        <li><a href="{{ url('/register') }}">Đăng Ký</a></li>
-                    @elseif(Auth::user()->id == 11262 || Auth::user()->id == 1 )
+                        <li><a href="{{ url('/huong-dan-vien') }}">Hướng dẫn viên</a></li>
+                        <li><a href="{{ url('/xem-dia-danh') }}">Xem địa danh</a></li>
+                        <li><a href="{{ url('/login') }}">Đăng nhập</a></li>
+                        <li><a href="{{ url('/register') }}">Đăng ký</a></li>
+                    @elseif(Auth::user()->id == 11262 || Auth::user()->id == 11264 || Auth::user()->id == 11265 || Auth::user()->id == 1 )
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý HDV <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -111,8 +112,8 @@
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Quản lý Địa Danh <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('/diadanh/') }}">Danh sách Địa Danh</a></li>
-                                <li><a href="{{ url('/diadanh/create') }}">Tạo mới Địa Danh</a></li>
+                                <li><a href="{{ url('/diadanh/') }}">Danh sách địa danh</a></li>
+                                <li><a href="{{ url('/diadanh/create') }}">Tạo mới địa danh</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
