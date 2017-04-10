@@ -11,6 +11,6 @@
   	</div>
 </div>
 
-<p>{{ link_to_route('diadanh.index', 'Danh sách địa danh') }} | {{ link_to_route('diadanh.create', 'Tạo địa danh mới') }}</p>
+<p>{{ link_to_route('nhatkyhanhtrinh.index', 'Danh sách nhật ký') }} | {{ link_to_route('nhatkyhanhtrinh.create', 'Tạo nhật ký mới') }}</p>
 
 @stop

@@ -128,3 +128,11 @@
     overflow-x: hidden;
     min-height: .01%;
 }
+
+.diadanh-item{
+    margin-bottom: 10px;
+}
+
+.show-detail img{
+    width: 80%!important;
+}

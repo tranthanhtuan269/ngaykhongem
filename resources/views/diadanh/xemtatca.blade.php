@@ -23,39 +23,27 @@
 
         <div class="table-responsive">
         @if ($diadanhs->count())
-            <table class="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                        <th width="10%">Ảnh đại diện</th>
-                        <th width="90%">Thông tin chi tiết</th>
-                    </tr>
-                </thead>
+            @foreach ($diadanhs as $diadanh)
+            <div class="row diadanh-item">
+                <div class="col-xs-12 col-sm-12 col-md-3 text-center">
+                <?php 
+                    $images = explode( ';', $diadanh->images ); 
+                ?>
+                    <a href="{{URL::to('/')}}/xem-dia-danh/{{ $diadanh->id }}"><img src="{{ URL::to('/') }}/images/{{ $images[0] }}" alt="" width="200px" height="133px" /></a>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-9">
+                    <div class="big-field"><h4>{{ $diadanh->ten_diadanh }}</h4></div>
+                    <div class="big-field"><?php echo $diadanh->sub_mo_ta; ?></div>
 
-                <tbody>
-                    @foreach ($diadanhs as $diadanh)
-                        <tr>
-                            <td>
-                            <?php 
-                                $images = explode( ';', $diadanh->images ); 
-                            ?>
-                            <img src="{{ URL::to('/') }}/images/{{ $images[0] }}" alt="" width="200px" /></td>
-                            <td>
-                                <div class="big-field"><h4>{{ $diadanh->ten_diadanh }}</h4></div>
-                                <div class="big-field"><?php echo $diadanh->sub_mo_ta; ?></div>
-
-                                <div>
-                                <a class="btn btn-primary btn-xed" href="{{URL::to('/')}}/xem-dia-danh/{{ $diadanh->id }}">Xem</a>
-                                @if(!in_array($diadanh->id, $arrayfollow))<button class="btn btn-primary btn-xed follow-tour" data-accept-id="{{ $diadanh->id }}">Đặt tour</button>
-                                @endif
-                                </div>
-                                <div class="clear-fix"></div>
-                            </td>
-                        </tr>
-                    @endforeach
-
-                </tbody>
-
-            </table>
+                    <div>
+                    <a class="btn btn-primary btn-xed" href="{{URL::to('/')}}/xem-dia-danh/{{ $diadanh->id }}">Xem</a>
+                    @if(!in_array($diadanh->id, $arrayfollow))<button class="btn btn-primary btn-xed follow-tour" data-accept-id="{{ $diadanh->id }}">Đặt tour</button>
+                    @endif
+                    </div>
+                    <div class="clear-fix"></div>
+                </div>
+            </div>
+            @endforeach
 
             <div class="row text-center">
                 {{ $diadanhs->links() }}

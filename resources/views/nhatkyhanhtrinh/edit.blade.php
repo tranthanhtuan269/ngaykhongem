@@ -7,7 +7,7 @@
 
 <div class="panel panel-default main-content">
     <div class="panel-heading">
-        <h3 class="panel-title">Sửa địa danh</h3>
+        <h3 class="panel-title">Sửa nhật ký hành trình</h3>
     </div>
     <div class="panel-body">
         @if($errors->any())
@@ -24,11 +24,11 @@
             </div>
         @endif
         
-        {{ Form::model($diadanh, array('method' => 'PATCH', 'route' => array('diadanh.update', $diadanh->id), 'files'=>true, 'class' => 'form-horizontal')) }}
+        {{ Form::model($diadanh, array('method' => 'PATCH', 'route' => array('nhatkyhanhtrinh.update', $diadanh->id), 'files'=>true, 'class' => 'form-horizontal')) }}
         <div class="form-group">
-            {!! Form::label('ten_diadanh', 'Tên địa danh:', ['class' => 'col-sm-2 control-label']) !!}
+            {!! Form::label('ten_diadanh', 'Tên nhật ký:', ['class' => 'col-sm-2 control-label']) !!}
             <div class="col-sm-10">
-                {!! Form::text('ten_diadanh', $diadanh->ten_diadanh, ['class' => 'form-control', 'placeholder' => 'Tên địa danh']) !!}
+                {!! Form::text('ten_diadanh', $diadanh->ten_diadanh, ['class' => 'form-control', 'placeholder' => 'Tên nhật ký']) !!}
             </div>
         </div>
         

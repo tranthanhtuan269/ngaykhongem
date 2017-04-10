@@ -14,7 +14,7 @@ use App\Followdiadanh;
 use Auth;
 use Mail;
 
-class DiadanhController extends Controller
+class NhatkyhanhtrinhController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,16 +23,16 @@ class DiadanhController extends Controller
      */
     public function index()
     {
-        $diadanhs = DB::table('diadanh')
+        $diadanhs = DB::table('diadanh')->where('type','=',2)
                     ->paginate(8);
         
-        return view('diadanh.index')->withdiadanhs($diadanhs);
+        return view('nhatkyhanhtrinh.index')->withdiadanhs($diadanhs);
     }
     
     public function xemtatcadiadanh()
     {
         if(Auth::user()){
-            $diadanhs = DB::table('diadanh')
+            $diadanhs = DB::table('diadanh')->where('type','=',2)
                         ->paginate(8);
             $follows = DB::table('followdiadanh')
                         ->where('user_id', '=', Auth::user()->id)
@@ -42,10 +42,10 @@ class DiadanhController extends Controller
                 $arr[] = $follow->diadanh_id;
             }
         }else{
-           $diadanhs = DB::table('diadanh')->paginate(8);
+           $diadanhs = DB::table('diadanh')->where('type','=',2)->paginate(8);
            $arr = [];
         }
-        return view('diadanh.xemtatca')->withdiadanhs($diadanhs)->witharrayfollow($arr);
+        return view('nhatkyhanhtrinh.xemtatca')->withdiadanhs($diadanhs)->witharrayfollow($arr);
     }
     
     public function followdiadanh($id){
@@ -111,8 +111,8 @@ class DiadanhController extends Controller
      */
     public function create()
     {
-        if($this->checkAccess()){
-            return view('diadanh.create');
+        if(Auth::user()){
+            return view('nhatkyhanhtrinh.create');
         }else{
             return view('errors.404');
         }
@@ -136,7 +136,7 @@ class DiadanhController extends Controller
      */
     public function store(CreateDiadanhRequest $request)
     {
-        if($this->checkAccess()){
+        if(Auth::user()){
             $picture = '';
             $allPic = '';
             if ($request->hasFile('images1')) {
@@ -154,11 +154,11 @@ class DiadanhController extends Controller
             $input = $request->all();
             unset($input['images1']);
             $input['images'] = $allPic;
-            $input['type'] = 1;
+            $input['type'] = 2;
             $input['created_by'] = Auth::user()->id;
             $diadanh = Diadanh::create($input);
 
-            \Session::flash('flash_message', 'Địa danh đã được tạo thành công!');
+            \Session::flash('flash_message', 'Nhật ký hành trình đã được tạo thành công!');
 
             return redirect()->back();
         }else{
@@ -176,22 +176,22 @@ class DiadanhController extends Controller
     {
         $diadanh = Diadanh::findOrFail($id);
         
-        if($diadanh === null){
+        if($diadanh === null || $diadanh->type == 1){
             return view('errors.404');
         }        
 
-        return view('diadanh.show')->withdiadanh($diadanh);
+        return view('nhatkyhanhtrinh.show')->withdiadanh($diadanh);
     }
     
     public function xemdiadanh($id)
     {
         $diadanh = Diadanh::findOrFail($id);
         
-        if($diadanh === null){
+        if($diadanh === null || $diadanh->type == 1){
             return view('errors.404');
         }        
 
-        return view('diadanh.nshow')->withdiadanh($diadanh);
+        return view('nhatkyhanhtrinh.nshow')->withdiadanh($diadanh);
     }
 
     /**
@@ -202,13 +202,13 @@ class DiadanhController extends Controller
      */
     public function edit($id)
     {
-        if($this->checkAccess()){
+        if(Auth::user()){
             $diadanh = Diadanh::find($id);
             if (is_null($diadanh))
             {
-                return Redirect::route('diadanh.index');
+                return Redirect::route('nhatkyhanhtrinh.index');
             }
-            return \View::make('diadanh.edit', compact(['diadanh']));
+            return \View::make('nhatkyhanhtrinh.edit', compact(['diadanh']));
         }else{
             return view('errors.404');
         }
@@ -223,7 +223,7 @@ class DiadanhController extends Controller
      */
     public function update(CreateDiadanhRequest $request, $id)
     {
-        if($this->checkAccess()){
+        if(Auth::user()){
             $input = $request->all();
 
             $picture = '';
@@ -244,13 +244,13 @@ class DiadanhController extends Controller
 
             $diadanh = Diadanh::find($id);
 
-            if($diadanh === null){
+            if($diadanh === null || $diadanh->type == 1){
                 return view('errors.404');
             }
 
             $diadanh->update($input);
 
-            \Session::flash('flash_message', 'Địa danh đã được sửa thành công!');
+            \Session::flash('flash_message', 'Nhật ký hành trình đã được sửa thành công!');
 
             return redirect()->back();
         }else{
@@ -269,17 +269,17 @@ class DiadanhController extends Controller
         if($this->checkAccess()){
             $diadanh = Diadanh::find($id);
 
-            if (is_null($diadanh))
+            if (is_null($diadanh) || $diadanh->type == 1)
             {
-                Session::flash('flash_message', 'Không tìm thấy địa danh bạn muốn xóa!');
-                return Redirect::route('diadanh.index');
+                Session::flash('flash_message', 'Không tìm thấy nhật ký hành trình bạn muốn xóa!');
+                return Redirect::route('nhatkyhanhtrinh.index');
             }
 
             $diadanh->delete();
 
-            Session::flash('flash_message', 'Địa danh đã được xóa thành công!');
+            Session::flash('flash_message', 'Nhật ký hành trình đã được xóa thành công!');
 
-            return redirect()->route('diadanh.index');
+            return redirect()->route('nhatkyhanhtrinh.index');
         }else{
             return view('errors.404');
         }

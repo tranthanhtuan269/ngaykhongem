@@ -7,7 +7,7 @@
 
 <div class="panel panel-default main-content">
     <div class="panel-heading">
-        <h3 class="panel-title">Thêm Hướng dẫn viên</h3>
+        <h3 class="panel-title">Tạo nhật ký hành trình</h3>
     </div>
     <div class="panel-body">
     @if($errors->any())
@@ -25,56 +25,49 @@
     @endif
 
     {!! Form::open([
-        'route' => 'hdv.store','method'=>'POST', 'files'=>true, 'class' => 'form-horizontal', 'id' => 'create_hdv'
+        'route' => 'nhatkyhanhtrinh.store','method'=>'POST', 'files'=>true, 'class' => 'form-horizontal', 'id' => 'create_tour'
     ]) !!}
 
 
     <div class="form-group">
-        {!! Form::label('name', 'Tên HDV:', ['class' => 'col-sm-2 control-label']) !!}
+        {!! Form::label('ten_diadanh', 'Tên hành trình:', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Tên HDV']) !!}
+            {!! Form::text('ten_diadanh', null, ['class' => 'form-control', 'placeholder' => 'Tên hành trình']) !!}
         </div>
     </div>
     
     <div class="form-group">
-        {!! Form::label('email', 'Email HDV:', ['class' => 'col-sm-2 control-label']) !!}
+        {!! Form::label('sub_mo_ta', 'Sub mô tả:', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'Email HDV']) !!}
+            {!! Form::textarea('sub_mo_ta', null, ['class' => 'form-control summernote', 'placeholder' => 'Sub mô tả']) !!}
         </div>
     </div>
-    
+
     <div class="form-group">
-        {!! Form::label('address', 'Địa chỉ HDV:', ['class' => 'col-sm-2 control-label']) !!}
+        {!! Form::label('mo_ta', 'Mô tả:', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::text('address', null, ['class' => 'form-control', 'placeholder' => 'Địa chỉ HDV']) !!}
-        </div>
-    </div>
-    
-    <div class="form-group">
-        {!! Form::label('phone', 'Phone HDV:', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-10">
-            {!! Form::text('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone HDV']) !!}
+            {!! Form::textarea('mo_ta', null, ['class' => 'form-control summernote', 'placeholder' => 'Mô tả']) !!}
         </div>
     </div>
 
     <div class="form-group">
         {!! Form::label('images[]', 'Ảnh:', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            <input type="file" name="images1[]">
+            <input type="file" name="images1[]" multiple>
         </div>
     </div>
-    
+
     <div class="form-group">
-        {!! Form::label('tieu_su', 'Mô tả:', ['class' => 'col-sm-2 control-label']) !!}
-        <div class="col-sm-10">
-            {!! Form::textarea('tieu_su', null, ['class' => 'form-control summernote', 'placeholder' => 'Mô tả']) !!}
+        {!! Form::label('type', 'Kiểu tour:', ['class' => 'col-sm-2 control-label']) !!}
+        <div class="col-sm-4">
+            {{ Form::select('type', ['Thám hiểm', 'Mạo hiểm', 'Chụp hình'], 0, ['class' => 'form-control']) }}
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
         {!! Form::submit('Tạo mới', ['class' => 'btn btn-primary']) !!}
-        <div class="btn btn-default">{{ link_to_route('hdv.index', 'Danh sách HDV') }}</div>
+        <div class="btn btn-default">{{ link_to_route('nhatkyhanhtrinh.index', 'Danh sách nhật ký hành trình') }}</div>
     </div>
 
     {!! Form::close() !!}
@@ -82,7 +75,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-  $('#create_hdv').on('keyup keypress', function(e) {
+  $('#create_tour').on('keyup keypress', function(e) {
     var keyCode = e.keyCode || e.which;
     if (keyCode === 13) { 
       e.preventDefault();

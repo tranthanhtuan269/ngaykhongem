@@ -12,7 +12,7 @@
 </div>
 
 <p>
-    <a class="btn btn-primary btn-xed" href="{{URL::to('/')}}/xem-dia-danh">Danh sách địa danh</a>
+    <a class="btn btn-primary btn-xed" href="{{URL::to('/')}}/xem-dia-danh">Danh sách nhật ký</a>
     @if (!Auth::guest())
     <button type="button" class="btn btn-primary" id="follow_diadanh" data-accept-id="{{$diadanh->id}}">
         Đăng kí tour sớm nhất
@@ -130,7 +130,7 @@ $(document).ready(function(){
                 _sefl.hide();
             }else if(msg.code==0){
                 $.toast({
-                    text: 'Hệ thống không tìm thấy Địa danh bạn muốn đăng kí. <br />Xin hãy liên hệ ban quản trị!', // Text that is to be shown in the toast
+                    text: 'Hệ thống không tìm thấy nhật ký bạn muốn đăng kí. <br />Xin hãy liên hệ ban quản trị!', // Text that is to be shown in the toast
                     heading: 'Đăng kí không thành công', // Optional heading to be shown on the toast
                     icon: 'error', // Type of toast icon
                     showHideTransition: 'plain', // fade, slide or plain

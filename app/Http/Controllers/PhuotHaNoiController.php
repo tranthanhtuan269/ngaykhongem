@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use App\Tour;
+use App\Textout;
 use App\Dattour;
 use Mail;
 
@@ -168,6 +169,63 @@ class PhuotHaNoiController extends Controller
         
         $returnArr['code'] = 2;
         $returnArr['message'] = "Unsuccess";
+        return json_encode($returnArr);
+    }
+    
+    public function suagioithieu(){
+        $gioi_thieu = DB::table('textout')->where('name', '=', 'trang_chu')->first();
+        //dd($gioi_thieu->textout);
+        return view('phuothanoi.suagioithieu')->withgioithieu($gioi_thieu);
+    }
+    
+    public function editgioithieu(){
+        if(isset($_POST) && isset($_POST['gioi_thieu'])){
+            DB::table('textout')->where('name', 'trang_chu')
+            ->update(['textout' => $_POST['gioi_thieu']]);
+            $returnArr['code'] = 1;
+            $returnArr['message'] = "Success";
+            return json_encode($returnArr);
+        }
+        $returnArr['code'] = 0;
+        $returnArr['message'] = "Notfound";
+        return json_encode($returnArr);
+    }
+    
+    public function suaabout(){
+        $gioi_thieu = DB::table('textout')->where('name', '=', 'gioi_thieu')->first();
+        //dd($gioi_thieu->textout);
+        return view('phuothanoi.suaabout')->withgioithieu($gioi_thieu);
+    }
+    
+    public function editabout(){
+        if(isset($_POST) && isset($_POST['gioi_thieu'])){
+            DB::table('textout')->where('name', 'gioi_thieu')
+            ->update(['textout' => $_POST['gioi_thieu']]);
+            $returnArr['code'] = 1;
+            $returnArr['message'] = "Success";
+            return json_encode($returnArr);
+        }
+        $returnArr['code'] = 0;
+        $returnArr['message'] = "Notfound";
+        return json_encode($returnArr);
+    }
+    
+    public function suaxumenh(){
+        $gioi_thieu = DB::table('textout')->where('name', '=', 'xu_menh')->first();
+        //dd($gioi_thieu->textout);
+        return view('phuothanoi.suaxumenh')->withgioithieu($gioi_thieu);
+    }
+    
+    public function editxumenh(){
+        if(isset($_POST) && isset($_POST['gioi_thieu'])){
+            DB::table('textout')->where('name', 'xu_menh')
+            ->update(['textout' => $_POST['gioi_thieu']]);
+            $returnArr['code'] = 1;
+            $returnArr['message'] = "Success";
+            return json_encode($returnArr);
+        }
+        $returnArr['code'] = 0;
+        $returnArr['message'] = "Notfound";
         return json_encode($returnArr);
     }
 }

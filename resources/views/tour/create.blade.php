@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_admin')
 
 @section('content')
 <!-- include summernote css/js-->
@@ -53,7 +53,7 @@
     <div class="form-group">
         {!! Form::label('lich_trinh', 'Lịch trình:', ['class' => 'col-sm-2 control-label']) !!}
         <div class="col-sm-10">
-            {!! Form::textarea('lich_trinh', null, ['class' => 'form-control summernote', 'placeholder' => 'Lịch trình']) !!}
+            {!! Form::textarea('lich_trinh', null, ['class' => 'form-control', 'id' => 'summernote', 'placeholder' => 'Lịch trình']) !!}
         </div>
     </div>
 
@@ -124,7 +124,20 @@ $(document).ready(function(){
     }
   });
   
-  $('.summernote').summernote({
+  $('#summernote').summernote({
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['fontsize', ['fontsize']],
+        ['fontname', ['fontname']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'hr']],
+        ['view', ['fullscreen', 'codeview']],
+        ['help', ['help']]
+      ],
     height:300,
     callbacks: {
         onImageUpload : function(files, editor, welEditable) {

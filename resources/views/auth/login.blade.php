@@ -61,7 +61,7 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="fa fa-btn fa-sign-in"></i> Đăng nhập
                     </button> 
-
+                    <a href="{{ url('/register') }}" class="btn btn-link">Đăng ký</a> |
                     <a class="btn btn-link" href="{{ url('/password/reset') }}">Quên mật khẩu?</a>
                 </div>
             </div>
