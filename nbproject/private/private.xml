@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/code/resources/views/layouts/app_admin.blade.php</file>
-            <file>file:/E:/code/resources/views/nhatkyhanhtrinh/index.blade.php</file>
-            <file>file:/E:/code/resources/views/layouts/app.blade.php</file>
-            <file>file:/E:/code/app/Http/routes.php</file>
-            <file>file:/E:/code/app/Http/Controllers/DiadanhController.php</file>
+            <file>file:/var/www/ngaykhongem/resources/views/layouts/app2.blade.php</file>
+            <file>file:/var/www/ngaykhongem/public/themeView1/assets/js/jquery-func.js</file>
+            <file>file:/var/www/ngaykhongem/resources/views/layouts/app.blade.php</file>
+            <file>file:/var/www/ngaykhongem/public/css/app.css</file>
+            <file>file:/var/www/ngaykhongem/resources/views/view1.blade.php</file>
         </group>
     </open-files>
 </project-private>

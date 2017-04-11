@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Moc-backpacking">
-    <meta name="author" content="mocbackpacking.com">
-    <link rel="shortcut icon" type="image/png" href="{{ url('/') }}/images/logo.jpg">
+    <meta name="description" content="SHIELD - Free Bootstrap 3 Theme">
+    <meta name="author" content="Carlos Alvarez - Alvarez.is - blacktie.co">
+    <link rel="shortcut icon" href="{{ url('/') }}/themeView1/assets/ico/favicon.png">
 
-    <title>Moc backpacking</title>
+    <title> SHIELD - Free Bootstrap 3 Theme</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url('/') }}/themeView1/assets/css/bootstrap.css" rel="stylesheet">
@@ -15,10 +15,7 @@
     <!-- Custom styles for this template -->
     <link href="{{ url('/') }}/themeView1/assets/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('/') }}/themeView1/assets/css/icomoon.css">
-    <link rel="stylesheet" href="{{ url('/') }}/css/pickmeup.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/jquery.toast.css">
     <link href="{{ url('/') }}/themeView1/assets/css/animate-custom.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ url('/') }}/css/app.css">
 
 
     
@@ -26,53 +23,37 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
     
     <script src="{{ url('/') }}/themeView1/assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/themeView1/assets/js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/js/pickmeup.js"></script>
-    <script type="text/javascript" src="{{ url('/') }}/js/jquery.toast.js"></script>
+	<script type="text/javascript" src="{{ url('/') }}/themeView1/assets/js/modernizr.custom.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="{{ url('/') }}/themeView1/assets/js/html5shiv.js"></script>
       <script src="{{ url('/') }}/themeView1/assets/js/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-    </script>
   </head>
 
   <body data-spy="scroll" data-offset="0" data-target="#navbar-main">
-  <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=317838401932364";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
   
-    <div id="navbar-main">
-    <!-- Fixed navbar -->
+  
+  	<div id="navbar-main">
+      <!-- Fixed navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="icon icon-shield" style="font-size:30px; color:#3498db;"></span>
           </button>
-          <a class="navbar-brand hidden-xs hidden-sm" href="#home"><img src="{{ url('/') }}/images/logo.jpg" alt="" class="logo-img"></a>
+          <a class="navbar-brand hidden-xs hidden-sm" href="#home"><span class="icon icon-shield" style="font-size:18px; color:#3498db;"></span></a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="#home" class="smoothScroll">Home</a></li>
-            <li> <a href="#about" class="smoothScroll"> About</a></li>
-            <li> <a href="#services" class="smoothScroll"> Services</a></li>
-            <li> <a href="#team" class="smoothScroll"> Team</a></li>
-            <li> <a href="#portfolio" class="smoothScroll"> Portfolio</a></li>
-            <li> <a href="#blog" class="smoothScroll"> Blog</a></li>
-            <li> <a href="#contact" class="smoothScroll"> Contact</a></li>
+			<li> <a href="#about" class="smoothScroll"> About</a></li>
+			<li> <a href="#services" class="smoothScroll"> Services</a></li>
+			<li> <a href="#team" class="smoothScroll"> Team</a></li>
+			<li> <a href="#portfolio" class="smoothScroll"> Portfolio</a></li>
+			<li> <a href="#blog" class="smoothScroll"> Blog</a></li>
+			<li> <a href="#contact" class="smoothScroll"> Contact</a></li>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -82,32 +63,32 @@
   
 		<!-- ==== HEADERWRAP ==== -->
 	    <div id="headerwrap" id="home" name="home">
-                <header class="clearfix">
-                    <h1></h1>
-                    <p>Moc-backpacking</p>
-                    <p>Nơi những trải nghiệm được thăng hoa!</p>
-                </header>	    
+			<header class="clearfix">
+	  		 		<h1><span class="icon icon-shield"></span></h1>
+	  		 		<p>A Bootstrap 3 One Page Theme.</p>
+	  		 		<p>Exclusive for BlackTie.co.</p>
+	  		</header>	    
 	    </div><!-- /headerwrap -->
 
 		<!-- ==== GREYWRAP ==== -->
 		<div id="greywrap">
 			<div class="row">
 				<div class="col-lg-4 callout">
-					<span class="icon icon-camera"></span>
-					<h2>Chụp ảnh</h2>
-					<p>Cùng lưu lại những khoảng khắc tuyệt vời với những người thân yêu! Cảm nhận những yêu thương được sẻ chia trong từng khoảnh khắc.</p>
+					<span class="icon icon-stack"></span>
+					<h2>Bootstrap 3</h2>
+					<p>Shield Theme is powered by Bootstrap 3. The incredible Mobile First Framework is the best option to run your website. </p>
 				</div><!-- col-lg-4 -->
 					
 				<div class="col-lg-4 callout">
 					<span class="icon icon-eye"></span>
-					<h2>Trải nghiệm</h2>
-					<p>Cảm giác sống giữa thiên nhiên hùng vĩ, hay cắm lều trên những hòn đảo thanh bình, chúng ta sẽ cùng xóa đi hết tất cả những muộn phiền.</p>
+					<h2>Retina Ready</h2>
+					<p>You can use this theme with your iPhone, iPad or MacBook Pro. This theme is retina ready and that is awesome. </p>
 				</div><!-- col-lg-4 -->	
 				
 				<div class="col-lg-4 callout">
 					<span class="icon icon-heart"></span>
-					<h2>Cảm nhận</h2>
-					<p>Cùng nhau vượt qua những khó khăn và thử thách, viết lại những trải nghiệm và lưu vào nhật ký hành trình. </p>
+					<h2>Crafted with Love</h2>
+					<p>We don't make sites, we craft themes with love & passion. That is our most valued secret. We only do thing that we love.   </p>
 				</div><!-- col-lg-4 -->	
 			</div><!-- row -->
 		</div><!-- greywrap -->
@@ -116,24 +97,15 @@
 		<div class="container" id="about" name="about">
 			<div class="row white">
 			<br>
-				<h1 class="centered">Một chút về chúng tôi</h1>
+				<h1 class="centered">A LITTLE ABOUT OUR AGENCY</h1>
 				<hr>
 				
-				<div class="col-lg-12">
-					<p>Sinh ra và lớn lên trên mảnh đất Hà Nội, nhưng những cung đường mới chưa bao giờ hết sự thu hút với chúng tôi. Và càng tuyệt vời hơn, khi đam mê đó được tiếp lửa bởi những người luôn muốn khám phá những trải nghiệm thú vị. Hãy đến với chúng tôi để cùng trải nghiệm những phút giây tuyệt vời bên cạnh những người yêu thương!</p>
-<!--				</div> col-lg-6 
+				<div class="col-lg-6">
+					<p>We believe ideas come from everyone, everywhere. In fact, at BlackTie, everyone within our agency walls is a designer in their own right. And there are a few principles we believe—and we believe everyone should believe—about our design craft. These truths drive us, motivate us, and ultimately help us redefine the power of design. We’re big believers in doing right by our neighbors. After all, we grew up in the Twin Cities and we believe this place has much to offer. So we do what we can to support the community we love.</p>
+				</div><!-- col-lg-6 -->
 				
-				<div class="col-lg-6">-->
-<!--                                    <p>-->
-                                        <ul>
-                                            <li>Cắm trại trên bãi biển xanh</li>
-                                            <li>Cắm trại trên núi đá</li>
-                                            <li>Đi bộ trong những thung lũng</li>
-                                            <li>Chinh phục những thác nước</li>
-                                            <li>...</li>
-                                        </ul>
-                                        Sẽ chẳng bao giờ là những cung đường nhàm chán và tẻ nhạt. Hãy cùng tham gia, chia sẻ và trải nghiệm nhé!
-                                    <!--</p>-->
+				<div class="col-lg-6">
+					<p>Over the past four years, we’ve provided more than $1 million in combined cash and pro bono support to Way to Grow, an early childhood education and nonprofit organization. Other community giving involvement throughout our agency history includes pro bono work for more than 13 organizations, direct giving, a scholarship program through the Minneapolis College of Art & Design, board memberships, and ongoing participation in the Keystone Club, which gives five percent of our company’s earnings back to the community each year.</p>
 				</div><!-- col-lg-6 -->
 			</div><!-- row -->
 		</div><!-- container -->

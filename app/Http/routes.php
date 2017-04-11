@@ -19,6 +19,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/facebook/login', 'ActionController@loginfacebook');
 Route::get('/facebook/callback', 'ActionController@callbackfacebook');
 
+Route::get('/view1', 'ActionController@view1');
+
 Route::get('/sitemap.xml', function(){
     
 });

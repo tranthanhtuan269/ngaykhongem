@@ -356,4 +356,8 @@ class ActionController extends Controller
         $returnArr['message'] = "Success";
         return json_encode($returnArr);
     }
+    
+    public function view1(){
+        return view('view1');
+    }
 }
